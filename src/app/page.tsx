@@ -12,9 +12,11 @@ import { PillarsSection } from "@/components/sections/PillarsSection"
 import { TeamSection } from "@/components/sections/TeamSection"
 import { TimelineSection } from "@/components/sections/TimelineSection"
 import { TechStackSection } from "@/components/sections/TechStackSection"
+import { MethodologySection } from "@/components/sections/MethodologySection"
 import { PresentationsSection } from "@/components/sections/PresentationsSection"
 import { PublicationsSection } from "@/components/sections/PublicationsSection"
 import { ContactSection } from "@/components/sections/ContactSection"
+import { LiteratureSection } from "@/components/sections/LiteratureSection"
 
 const STATS = [
   { value: "4", label: "Research Pillars" },
@@ -126,6 +128,14 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
+
+      {/* ── Literature Survey ────────────────────────────── */}
+      <LiteratureSection />
+
+      {/* ── Research Objectives & Methodologies ──────────── */}
+      <ResearchFrameworkSection />
+      <PillarsSection />
+      <MethodologySection />
 
       {/* ── MTFL Architecture ──────────────────────────── */}
       <section className="w-full max-w-6xl mx-auto py-32 px-4">
@@ -276,13 +286,11 @@ export default function Home() {
       </section>
 
       {/* ── Content Sections ──────────────────────────── */}
-      <ResearchFrameworkSection />
-      <PillarsSection />
-      <TeamSection />
       <TechStackSection />
       <TimelineSection />
       <PresentationsSection />
       <PublicationsSection />
+      <TeamSection />
       <ContactSection />
     </div>
   )

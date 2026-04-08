@@ -20,13 +20,15 @@ export function Navbar() {
 
   const navItems = [
     { name: "Home", href: "/" },
+    { name: "Literature", href: "#literature" },
     { name: "Research", href: "#framework" },
     { name: "Pillars", href: "#pillars" },
-    { name: "Team", href: "#team" },
+    { name: "Methodology", href: "#methodology" },
     { name: "Tech Stack", href: "#tech-stack" },
     { name: "Timeline", href: "#timeline" },
     { name: "Presentations", href: "#presentations" },
     { name: "Publications", href: "#publications" },
+    { name: "Team", href: "#team" },
     { name: "Contact", href: "#contact" },
   ]
 
