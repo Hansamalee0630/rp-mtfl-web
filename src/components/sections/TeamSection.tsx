@@ -229,9 +229,9 @@
 
 "use client"
 
+import { useState } from "react"
 import { motion } from "framer-motion"
 import { GraduationCap, Mail } from "lucide-react"
-import Link from "next/link"
 
 const Linkedin = (props: React.ComponentProps<"svg">) => (
   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
@@ -243,14 +243,14 @@ const Linkedin = (props: React.ComponentProps<"svg">) => (
 
 const supervisors = [
   {
-    name: "Dr. Harinda Fernando",
+    name: "Prof. Harinda Fernando",
     role: "Primary Supervisor",
     institution: "Sri Lanka Institute of Information Technology",
     department: "Faculty of Computing",
     image: "/sup.png",
     color: "#00d4ff",
     initials: "HF",
-    links: { scholar: "#", email: "mailto:#" },
+    links: { scholar: "https://scholar.google.com/citations?user=T71-cqEAAAAJ&hl=en", email: "mailto:harinda.f@sliit.lk" },
   },
   {
     name: "Ms. Kaushalya Rajapaksa",
@@ -260,7 +260,7 @@ const supervisors = [
     image: "/cosup.png",
     color: "#00d4ff",
     initials: "KR",
-    links: { linkedin: "#", email: "mailto:#" },
+    links: { linkedin: "https://www.linkedin.com/in/kaushalya-rajapakse?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BtvalOkjVQhuCy31H8hdJWQ%3D%3D", email: "mailto:kaushalya.r@sliit.lk" },
   },
   {
     name: "Mr. Niranjan Meegammana",
@@ -270,7 +270,7 @@ const supervisors = [
     image: "/exsup.png",
     color: "#00ff88",
     initials: "NM",
-    links: { linkedin: "#", email: "mailto:#" },
+    links: { linkedin: "https://www.linkedin.com/in/niranjan-w-meegammana-9733b326?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3B5eCV9MQGT3OiAZsZThvhiQ%3D%3D", email: "mailto:niranjan.meegammana@gmail.com" },
   },
 ]
 
@@ -283,7 +283,7 @@ const researchers = [
     image: "/hans.png",
     color: "#c084fc",
     initials: "EE",
-    links: { linkedin: "https://linkedin.com/in/#", email: "mailto:#" },
+    links: { linkedin: "https://www.linkedin.com/in/hansamaleeekanayake?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3B4BVGv2GHTnqRF5MnVJjw5A%3D%3D", email: "mailto:hansamaleeekanayake3006@gmail.com" },
   },
   {
     name: "Upendra M.M.S.",
@@ -293,7 +293,7 @@ const researchers = [
     image: "/mili.png",
     color: "#00ff88",
     initials: "UM",
-    links: { linkedin: "https://linkedin.com/in/#", email: "mailto:#" },
+    links: { linkedin: "https://www.linkedin.com/in/mihili-upendra?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BOq8kXxT3RGalxGby85Ft%2FQ%3D%3D", email: "mailto:mihilisanjula@gmail.com" },
   },
   {
     name: "Perera K.T.D.",
@@ -303,7 +303,7 @@ const researchers = [
     image: "/tharu.png",
     color: "#60a5fa",
     initials: "PK",
-    links: { linkedin: "https://linkedin.com/in/#", email: "mailto:#" },
+    links: { linkedin: "https://www.linkedin.com/in/tharuushi?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3ByQboRJtuRbOzk0YuzWhHfw%3D%3D", email: "mailto:tharuushi@gmail.com" },
   },
   {
     name: "A.D. Oshadhi Vibodha",
@@ -313,11 +313,25 @@ const researchers = [
     image: "/oshi.png",
     color: "#f43f5e",
     initials: "OV",
-    links: { linkedin: "https://linkedin.com/in/#", email: "mailto:#" },
+    links: { linkedin: "https://www.linkedin.com/in/oshadhi-vibodha-b74134260?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BMoJLet8LS0ucJhgoobEZkg%3D%3D", email: "mailto:oshadhivibodha1@gmail.com" },
   },
 ]
 
 function MemberCard({ member, delay, size = "md" }: { member: any; delay: number; size?: "sm" | "md" }) {
+  const [copied, setCopied] = useState(false)
+  const emailAddress = member.links?.email?.replace(/^mailto:/, "")
+
+  const handleCopyEmail = async () => {
+    if (!emailAddress || !navigator?.clipboard) return
+    try {
+      await navigator.clipboard.writeText(emailAddress)
+      setCopied(true)
+      window.setTimeout(() => setCopied(false), 1500)
+    } catch {
+      setCopied(false)
+    }
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -379,24 +393,38 @@ function MemberCard({ member, delay, size = "md" }: { member: any; delay: number
           <p className="text-xs text-white/25 mb-auto">{member.department}</p>
 
           {/* Links */}
-          <div className="flex items-center gap-3 mt-4 pt-4 border-t border-white/6">
-            {member.links?.scholar && (
-              <Link href={member.links.scholar} className="flex items-center gap-1 text-xs text-white/35 hover:text-cyan-400 transition-colors font-medium">
-                <GraduationCap className="w-3.5 h-3.5" />
-                <span>Scholar</span>
-              </Link>
-            )}
-            {member.links?.linkedin && (
-              <Link href={member.links.linkedin} target="_blank" className="flex items-center gap-1 text-xs text-white/35 hover:text-cyan-400 transition-colors font-medium">
-                <Linkedin className="w-3.5 h-3.5" />
-                <span>LinkedIn</span>
-              </Link>
-            )}
-            {member.links?.email && (
-              <Link href={member.links.email} className="flex items-center gap-1 text-xs text-white/35 hover:text-cyan-400 transition-colors font-medium ml-auto">
-                <Mail className="w-3.5 h-3.5" />
-                <span>Email</span>
-              </Link>
+          <div className="flex flex-col gap-3 mt-4 pt-4 border-t border-white/6">
+            <div className="flex flex-wrap items-center gap-3">
+              {member.links?.scholar && (
+                <a href={member.links.scholar} target="_blank" rel="noreferrer" className="flex items-center gap-1 text-xs text-white/35 hover:text-cyan-400 transition-colors font-medium">
+                  <GraduationCap className="w-3.5 h-3.5" />
+                  <span>Scholar</span>
+                </a>
+              )}
+              {member.links?.linkedin && (
+                <a href={member.links.linkedin} target="_blank" rel="noreferrer" className="flex items-center gap-1 text-xs text-white/35 hover:text-cyan-400 transition-colors font-medium">
+                  <Linkedin className="w-3.5 h-3.5" />
+                  <span>LinkedIn</span>
+                </a>
+              )}
+              {member.links?.email && (
+                <a href={member.links.email} className="flex items-center gap-1 text-xs text-white/35 hover:text-cyan-400 transition-colors font-medium">
+                  <Mail className="w-3.5 h-3.5" />
+                  <span>Email</span>
+                </a>
+              )}
+            </div>
+            {emailAddress && (
+              <div className="flex items-center justify-between gap-3 text-[12px] text-white/40">
+                <span className="truncate">{emailAddress}</span>
+                <button
+                  type="button"
+                  onClick={handleCopyEmail}
+                  className="text-[12px] font-semibold text-white/60 hover:text-cyan-400 transition-colors"
+                >
+                  {copied ? "Copied!" : "Copy email"}
+                </button>
+              </div>
             )}
           </div>
         </div>

@@ -94,7 +94,7 @@ const pillars = [
     num: "01",
     title: "Privacy-Preserving Complication Risk Prediction",
     lead: "A.D. Oshadhi Vibodha",
-    description: "Predicting retinopathy and kidney failure using differential privacy to ensure raw hospital data never leaves the premises.",
+    description: "Predicting nephropathy and kidney failure using differential privacy to ensure raw hospital data never leaves the premises.",
     icon: ShieldAlert,
     color: "#f43f5e",
     gradient: "from-rose-500/20 to-transparent",
