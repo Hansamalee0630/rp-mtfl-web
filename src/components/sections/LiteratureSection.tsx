@@ -378,7 +378,7 @@
 //           </motion.div>
 //         </motion.div>
 
-//         {/* BOTTOM HALF: Your Original 4 Pillars as "Research Objectives" */}
+//         {/* BOTTOM HALF: our Original 4 Pillars as "Research Objectives" */}
 //         <motion.div
 //           initial="hidden"
 //           whileInView="show"
@@ -509,7 +509,7 @@
 //             variants={containerVariants}
 //             className="w-full lg:w-5/12 flex flex-col gap-6"
 //           >
-//             {/* Research Gap Card (Using your Red Alert style) */}
+//             {/* Research Gap Card (Using our Red Alert style) */}
 //             <motion.div variants={itemVariants} className="rounded-3xl bg-gradient-to-br from-red-500/10 to-transparent border border-red-500/20 p-8 flex flex-col gap-4 relative overflow-hidden group hover:border-red-500/40 transition-colors">
 //               <div className="flex items-center gap-3">
 //                 <div className="w-12 h-12 rounded-xl bg-red-500/10 flex items-center justify-center border border-red-500/20">
@@ -522,7 +522,7 @@
 //               </p>
 //             </motion.div>
 
-//             {/* Research Problem Card (Using your Dark Cyan style) */}
+//             {/* Research Problem Card (Using our Dark Cyan style) */}
 //             <motion.div variants={itemVariants} className="relative rounded-3xl bg-black/40 border border-white/10 p-8 overflow-hidden group hover:border-cyan-500/30 transition-colors">
 //               <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               
@@ -711,7 +711,7 @@
 //       id="literature"
 //       className="w-full relative px-4 md:px-8 py-32 bg-black border-t border-border/50 overflow-hidden"
 //     >
-//       {/* Official ambient glows — cyan only, matching your existing sections */}
+//       {/* Official ambient glows — cyan only, matching our existing sections */}
 //       <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-cyan-500/5 rounded-full blur-[120px] pointer-events-none" />
 //       <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-cyan-500/[0.03] rounded-full blur-[120px] pointer-events-none" />
 
@@ -761,7 +761,7 @@
 //                   fail to predict sequential complications, and lack integrated fairness-aware explainability.
 //                   No end-to-end framework addresses all of these simultaneously.
 //                 </p>
-//                 {/* Alert strip — matches your existing red alert pattern */}
+//                 {/* Alert strip — matches our existing red alert pattern */}
 //                 <div className="mt-5 p-4 rounded-2xl bg-red-500/10 border border-red-500/20 flex gap-3 items-start">
 //                   <AlertTriangle className="w-4 h-4 text-red-400 flex-shrink-0 mt-0.5" />
 //                   <div>
@@ -775,7 +775,7 @@
 //               </div>
 //             </div>
 
-//             {/* Research Problem — matches your "dark cyan hover" card style */}
+//             {/* Research Problem — matches our "dark cyan hover" card style */}
 //             <div className="group relative rounded-3xl bg-black/40 border border-white/10 p-8 overflow-hidden hover:border-cyan-500/30 transition-all duration-300">
 //               <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
 //               <div className="relative z-10">
@@ -845,7 +845,7 @@
 //                 ))}
 //               </div>
 
-//               {/* Frontier rows — cyan numbered circles, your exact existing pattern */}
+//               {/* Frontier rows — cyan numbered circles, our exact existing pattern */}
 //               <div className="border-t border-white/[0.07] pt-6 space-y-0">
 //                 {frontiers.map((f, i) => (
 //                   <div
@@ -888,7 +888,7 @@
 //                     key={i}
 //                     className="group relative rounded-2xl border border-white/[0.07] bg-white/[0.01] p-6 cursor-default overflow-hidden hover:bg-white/[0.04] hover:border-cyan-500/30 hover:-translate-y-[2px] transition-all duration-250"
 //                   >
-//                     {/* Bottom sweep bar — cyan-to-blue, your gradient */}
+//                     {/* Bottom sweep bar — cyan-to-blue, our gradient */}
 //                     <div className="absolute bottom-0 left-0 h-[2px] w-0 group-hover:w-full bg-gradient-to-r from-cyan-400 to-blue-500 transition-all duration-400" />
 //                     <p className="text-[10px] font-bold uppercase tracking-[0.1em] text-cyan-400/70 mb-2.5">
 //                       Objective {o.num}

@@ -14,7 +14,7 @@
 //     { date: "23 Jul", year: "2025", title: "Project charter", color: "from-cyan-500/20 to-transparent", border: "border-cyan-500/30", text: "text-cyan-400", dot: "bg-cyan-400", description: "Documentation establishing the project scope, objectives, and deliverables." },
 
 //     { date: "30 Aug", year: "2025", title: "Proposal reports (draft)", color: "from-violet-500/20 to-transparent", border: "border-violet-500/30", text: "text-violet-400", dot: "bg-violet-400", description: "Initial documentation covering literature review, problem definition, and high-level architectural design." },
-//     { date: "11 Sep", year: "2025", title: "Proposal presentation", color: "from-violet-500/20 to-transparent", border: "border-violet-500/30", text: "text-violet-400", dot: "bg-violet-400", description: "A Project Proposal is presented to potential sponsors or clients to receive funding or get your project approved.", marks: 6 },
+//     { date: "11 Sep", year: "2025", title: "Proposal presentation", color: "from-violet-500/20 to-transparent", border: "border-violet-500/30", text: "text-violet-400", dot: "bg-violet-400", description: "A Project Proposal is presented to potential sponsors or clients to receive funding or get Our project approved.", marks: 6 },
 //     { date: "19 Sep", year: "2025", title: "Proposal reports (final)", color: "from-violet-500/20 to-transparent", border: "border-violet-500/30", text: "text-violet-400", dot: "bg-violet-400", description: "Finalized proposal documents strictly adhering to academic formatting standards." },
 
 //     { date: "08 Jan", year: "2026", title: "Progress Presentation – I", color: "from-orange-500/20 to-transparent", border: "border-orange-500/30", text: "text-orange-400", dot: "bg-orange-400", description: "Progress Presentation I reviews the 50% completion status of the project. This reveals any gaps or inconsistencies in the design/requirements.", marks: 6 },
@@ -27,7 +27,7 @@
 //     { date: "30 Apr", year: "2026", title: "Final Check List", color: "from-yellow-500/20 to-transparent", border: "border-yellow-500/30", text: "text-yellow-400", dot: "bg-yellow-400", description: "Validation of final project artifacts, deployment status, and source code ownership." },
 //     { date: "27–30 Apr", year: "2026", title: "Logbook submission", color: "from-yellow-500/20 to-transparent", border: "border-yellow-500/30", text: "text-yellow-400", dot: "bg-yellow-400", description: "Status of the project is validated through the Logbook. This also includes, Status documents 1 & 2.", marks: 3 },
 
-//     { date: "04 May", year: "2026", title: "Research paper submission", color: "from-emerald-500/20 to-transparent", border: "border-emerald-500/30", text: "text-emerald-400", dot: "bg-emerald-400", description: "Describes what you contribute to existing knowledge, giving due recognition to all work that you referred in making new knowledge", marks: 10 },
+//     { date: "04 May", year: "2026", title: "Research paper submission", color: "from-emerald-500/20 to-transparent", border: "border-emerald-500/30", text: "text-emerald-400", dot: "bg-emerald-400", description: "Describes what we contribute to existing knowledge, giving due recognition to all work that we referred in making new knowledge", marks: 10 },
 //     { date: "30 May", year: "2026", title: "Paper evidence", color: "from-emerald-500/20 to-transparent", border: "border-emerald-500/30", text: "text-emerald-400", dot: "bg-emerald-400", description: "Submission of proof from credible academic conferences or journals indicating publication acceptance." },
 //   ]
 
@@ -226,7 +226,7 @@ export function TimelineSection() {
     { date: "23 Jul", year: "2025", title: "Project charter", color: "from-cyan-500/20 to-transparent", border: "border-cyan-500/30", text: "text-cyan-400", dot: "bg-cyan-400", description: "Documentation establishing the project scope, objectives, and deliverables." },
 
     { date: "30 Aug", year: "2025", title: "Proposal reports (draft)", color: "from-violet-500/20 to-transparent", border: "border-violet-500/30", text: "text-violet-400", dot: "bg-violet-400", description: "Initial documentation covering literature review, problem definition, and high-level architectural design." },
-    { date: "11 Sep", year: "2025", title: "Proposal presentation", color: "from-violet-500/20 to-transparent", border: "border-violet-500/30", text: "text-violet-400", dot: "bg-violet-400", description: "A Project Proposal is presented to potential sponsors or clients to receive funding or get your project approved.", marks: 6 },
+    { date: "11 Sep", year: "2025", title: "Proposal presentation", color: "from-violet-500/20 to-transparent", border: "border-violet-500/30", text: "text-violet-400", dot: "bg-violet-400", description: "A Project Proposal is presented to potential sponsors or clients to receive funding or get our project approved.", marks: 6 },
     { date: "19 Sep", year: "2025", title: "Proposal reports (final)", color: "from-violet-500/20 to-transparent", border: "border-violet-500/30", text: "text-violet-400", dot: "bg-violet-400", description: "Finalized proposal documents strictly adhering to academic formatting standards." },
 
     { date: "08 Jan", year: "2026", title: "Progress Presentation – I", color: "from-orange-500/20 to-transparent", border: "border-orange-500/30", text: "text-orange-400", dot: "bg-orange-400", description: "Progress Presentation I reviews the 50% completion status of the project. This reveals any gaps or inconsistencies in the design/requirements.", marks: 6 },
@@ -239,7 +239,7 @@ export function TimelineSection() {
     { date: "30 Apr", year: "2026", title: "Final Check List", color: "from-yellow-500/20 to-transparent", border: "border-yellow-500/30", text: "text-yellow-400", dot: "bg-yellow-400", description: "Validation of final project artifacts, deployment status, and source code ownership." },
     { date: "27–30 Apr", year: "2026", title: "Logbook submission", color: "from-yellow-500/20 to-transparent", border: "border-yellow-500/30", text: "text-yellow-400", dot: "bg-yellow-400", description: "Status of the project is validated through the Logbook. This also includes, Status documents 1 & 2.", marks: 3 },
 
-    { date: "04 May", year: "2026", title: "Research paper submission", color: "from-emerald-500/20 to-transparent", border: "border-emerald-500/30", text: "text-emerald-400", dot: "bg-emerald-400", description: "Describes what you contribute to existing knowledge, giving due recognition to all work that you referred in making new knowledge", marks: 10 },
+    { date: "04 May", year: "2026", title: "Research paper submission", color: "from-emerald-500/20 to-transparent", border: "border-emerald-500/30", text: "text-emerald-400", dot: "bg-emerald-400", description: "Describes the contribution to existing knowledge, with due recognition to all referenced work in the creation of new knowledge.", marks: 10 },
     { date: "30 May", year: "2026", title: "Paper evidence", color: "from-emerald-500/20 to-transparent", border: "border-emerald-500/30", text: "text-emerald-400", dot: "bg-emerald-400", description: "Submission of proof from credible academic conferences or journals indicating publication acceptance." },
   ]
 
@@ -455,7 +455,7 @@ export function TimelineSection() {
 //   // We track which drop-down is currently open. Default to the first one.
 //   const [openIdx, setOpenIdx] = useState<number | null>(0)
 
-//   // Your exact original data, perfectly preserved!
+//   // Our exact original data, perfectly preserved!
 //   const timelineEvents = [
 //     { date: "15 Mar", year: "2025", title: "Brainstorming workshop", border: "border-cyan-500/50", bg: "bg-cyan-500/10", text: "text-cyan-400", description: "Initial introduction to the research domain and ideation phase for potential project scopes." },
 //     { date: "16 May", year: "2025", title: "Group registration", border: "border-cyan-500/50", bg: "bg-cyan-500/10", text: "text-cyan-400", description: "Formalizing the 4-member undergraduate research group and supervisor assignments." },
@@ -463,7 +463,7 @@ export function TimelineSection() {
 //     { date: "23 Jul", year: "2025", title: "Project charter", border: "border-cyan-500/50", bg: "bg-cyan-500/10", text: "text-cyan-400", description: "Documentation establishing the project scope, objectives, and deliverables." },
 
 //     { date: "30 Aug", year: "2025", title: "Proposal reports (draft)", border: "border-violet-500/50", bg: "bg-violet-500/10", text: "text-violet-400", description: "Initial documentation covering literature review, problem definition, and high-level architectural design." },
-//     { date: "11 Sep", year: "2025", title: "Proposal presentation", border: "border-violet-500/50", bg: "bg-violet-500/10", text: "text-violet-400", description: "A Project Proposal is presented to potential sponsors or clients to receive funding or get your project approved.", marks: 6 },
+//     { date: "11 Sep", year: "2025", title: "Proposal presentation", border: "border-violet-500/50", bg: "bg-violet-500/10", text: "text-violet-400", description: "A Project Proposal is presented to potential sponsors or clients to receive funding or get Our project approved.", marks: 6 },
 //     { date: "19 Sep", year: "2025", title: "Proposal reports (final)", border: "border-violet-500/50", bg: "bg-violet-500/10", text: "text-violet-400", description: "Finalized proposal documents strictly adhering to academic formatting standards." },
 
 //     { date: "08 Jan", year: "2026", title: "Progress Presentation – I", border: "border-orange-500/50", bg: "bg-orange-500/10", text: "text-orange-400", description: "Progress Presentation I reviews the 50% completion status of the project. This reveals any gaps or inconsistencies in the design/requirements.", marks: 6 },
@@ -606,7 +606,7 @@ export function TimelineSection() {
 //     { date: "23 Jul", year: "2025", title: "Project charter", color: "from-cyan-500/20 to-transparent", border: "border-cyan-500/30", text: "text-cyan-400", dot: "bg-cyan-400", description: "Documentation establishing the project scope, objectives, and deliverables." },
 
 //     { date: "30 Aug", year: "2025", title: "Proposal reports (draft)", color: "from-violet-500/20 to-transparent", border: "border-violet-500/30", text: "text-violet-400", dot: "bg-violet-400", description: "Initial documentation covering literature review, problem definition, and high-level architectural design." },
-//     { date: "11 Sep", year: "2025", title: "Proposal presentation", color: "from-violet-500/20 to-transparent", border: "border-violet-500/30", text: "text-violet-400", dot: "bg-violet-400", description: "A Project Proposal is presented to potential sponsors or clients to receive funding or get your project approved.", marks: 6 },
+//     { date: "11 Sep", year: "2025", title: "Proposal presentation", color: "from-violet-500/20 to-transparent", border: "border-violet-500/30", text: "text-violet-400", dot: "bg-violet-400", description: "A Project Proposal is presented to potential sponsors or clients to receive funding or get Our project approved.", marks: 6 },
 //     { date: "19 Sep", year: "2025", title: "Proposal reports (final)", color: "from-violet-500/20 to-transparent", border: "border-violet-500/30", text: "text-violet-400", dot: "bg-violet-400", description: "Finalized proposal documents strictly adhering to academic formatting standards." },
 
 //     { date: "08 Jan", year: "2026", title: "Progress Presentation – I", color: "from-orange-500/20 to-transparent", border: "border-orange-500/30", text: "text-orange-400", dot: "bg-orange-400", description: "Progress Presentation I reviews the 50% completion status of the project. This reveals any gaps or inconsistencies in the design/requirements.", marks: 6 },
