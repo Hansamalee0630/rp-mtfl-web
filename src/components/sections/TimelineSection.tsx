@@ -220,34 +220,35 @@ export function TimelineSection() {
   const [activeIdx, setActiveIdx] = useState(0)
 
   const timelineEvents = [
-    { date: "15 Mar", year: "2025", title: "Brainstorming workshop", color: "from-cyan-500/20 to-transparent", border: "border-cyan-500/30", text: "text-cyan-400", dot: "bg-cyan-400", description: "Initial introduction to the research domain and ideation phase for potential project scopes." },
-    { date: "16 May", year: "2025", title: "Group registration", color: "from-cyan-500/20 to-transparent", border: "border-cyan-500/30", text: "text-cyan-400", dot: "bg-cyan-400", description: "Formalizing the 4-member undergraduate research group and supervisor assignments." },
+    { date: "15 Mar", year: "2025", title: "Brainstorming Workshop", color: "from-cyan-500/20 to-transparent", border: "border-cyan-500/30", text: "text-cyan-400", dot: "bg-cyan-400", description: "Initial introduction to the research domain and ideation phase for potential project scopes." },
+    { date: "16 May", year: "2025", title: "Group Registration", color: "from-cyan-500/20 to-transparent", border: "border-cyan-500/30", text: "text-cyan-400", dot: "bg-cyan-400", description: "Formalizing the 4-member undergraduate research group and supervisor assignments." },
     { date: "27 Jun", year: "2025", title: "Topic Assessment Form (TAF)", color: "from-cyan-500/20 to-transparent", border: "border-cyan-500/30", text: "text-cyan-400", dot: "bg-cyan-400", description: "Official submission of the research problem and proposed solution for departmental approval." },
-    { date: "23 Jul", year: "2025", title: "Project charter", color: "from-cyan-500/20 to-transparent", border: "border-cyan-500/30", text: "text-cyan-400", dot: "bg-cyan-400", description: "Documentation establishing the project scope, objectives, and deliverables." },
+    { date: "23 Jul", year: "2025", title: "Project Charter", color: "from-cyan-500/20 to-transparent", border: "border-cyan-500/30", text: "text-cyan-400", dot: "bg-cyan-400", description: "Documentation establishing the project scope, objectives, and deliverables." },
 
-    { date: "30 Aug", year: "2025", title: "Proposal reports (draft)", color: "from-violet-500/20 to-transparent", border: "border-violet-500/30", text: "text-violet-400", dot: "bg-violet-400", description: "Initial documentation covering literature review, problem definition, and high-level architectural design." },
-    { date: "11 Sep", year: "2025", title: "Proposal presentation", color: "from-violet-500/20 to-transparent", border: "border-violet-500/30", text: "text-violet-400", dot: "bg-violet-400", description: "A Project Proposal is presented to potential sponsors or clients to receive funding or get our project approved.", marks: 6 },
-    { date: "19 Sep", year: "2025", title: "Proposal reports (final)", color: "from-violet-500/20 to-transparent", border: "border-violet-500/30", text: "text-violet-400", dot: "bg-violet-400", description: "Finalized proposal documents strictly adhering to academic formatting standards." },
+    { date: "30 Aug", year: "2025", title: "Proposal Reports (Draft)", color: "from-violet-500/20 to-transparent", border: "border-violet-500/30", text: "text-violet-400", dot: "bg-violet-400", description: "Initial documentation covering literature review, problem definition, and high-level architectural design." },
+    { date: "11 Sep", year: "2025", title: "Proposal Presentation", color: "from-violet-500/20 to-transparent", border: "border-violet-500/30", text: "text-violet-400", dot: "bg-violet-400", description: "A Project Proposal is presented to potential sponsors or clients to receive funding or get our project approved.", marks: 6 },
+    { date: "19 Sep", year: "2025", title: "Proposal Reports (Final)", color: "from-violet-500/20 to-transparent", border: "border-violet-500/30", text: "text-violet-400", dot: "bg-violet-400", description: "Finalized proposal documents strictly adhering to academic formatting standards." },
 
     { date: "08 Jan", year: "2026", title: "Progress Presentation – I", color: "from-orange-500/20 to-transparent", border: "border-orange-500/30", text: "text-orange-400", dot: "bg-orange-400", description: "Progress Presentation I reviews the 50% completion status of the project. This reveals any gaps or inconsistencies in the design/requirements.", marks: 6 },
     { date: "11 Jan", year: "2026", title: "Check List I", color: "from-orange-500/20 to-transparent", border: "border-orange-500/30", text: "text-orange-400", dot: "bg-orange-400", description: "Assessment checklist verifying core foundational implementations and repository health." },
     { date: "09 Mar", year: "2026", title: "Progress Presentation – II", color: "from-orange-500/20 to-transparent", border: "border-orange-500/30", text: "text-orange-400", dot: "bg-orange-400", description: "Progress Presentation II reviews the 90% completion status demonstration of the project. Along with a Poster presentation which describes the project as a whole.", marks: 18 },
 
-    { date: "26 Apr", year: "2026", title: "Final report Submission", color: "from-yellow-500/20 to-transparent", border: "border-yellow-500/30", text: "text-yellow-400", dot: "bg-yellow-400", description: "Final Report evaluates the completed project done throughout the year. Marks mentioned below includes marks for Individual & group reports and also Final report.", marks: 19 },
-    { date: "26 Apr", year: "2026", title: "Project website", color: "from-yellow-500/20 to-transparent", border: "border-yellow-500/30", text: "text-yellow-400", dot: "bg-yellow-400", description: "The Website helps to promote our research project and reveals all details related to the project.", marks: 2 },
-    { date: "27–30 Apr", year: "2026", title: "Final presentation & VIVA", color: "from-yellow-500/20 to-transparent", border: "border-yellow-500/30", text: "text-yellow-400", dot: "bg-yellow-400", description: "Viva is held individually to assess each members contribution to the project.", marks: 20 },
-    { date: "30 Apr", year: "2026", title: "Final Check List", color: "from-yellow-500/20 to-transparent", border: "border-yellow-500/30", text: "text-yellow-400", dot: "bg-yellow-400", description: "Validation of final project artifacts, deployment status, and source code ownership." },
-    { date: "27–30 Apr", year: "2026", title: "Logbook submission", color: "from-yellow-500/20 to-transparent", border: "border-yellow-500/30", text: "text-yellow-400", dot: "bg-yellow-400", description: "Status of the project is validated through the Logbook. This also includes, Status documents 1 & 2.", marks: 3 },
+    { date: "26 Apr", year: "2026", title: "Final Report Submission (Draft)", color: "from-yellow-500/20 to-transparent", border: "border-yellow-500/30", text: "text-yellow-400", dot: "bg-yellow-400", description: "Final Report evaluates the completed project done throughout the year. Marks mentioned below includes marks for Individual & group reports and also Final report.", marks: 19 },
+    { date: "26 Apr", year: "2026", title: "Project Website Submission", color: "from-yellow-500/20 to-transparent", border: "border-yellow-500/30", text: "text-yellow-400", dot: "bg-yellow-400", description: "The Website helps to promote our research project and reveals all details related to the project.", marks: 2 },
+    { date: "27–06 May", year: "2026", title: "Final Presentation & VIVA", color: "from-yellow-500/20 to-transparent", border: "border-yellow-500/30", text: "text-yellow-400", dot: "bg-yellow-400", description: "Viva is held individually to assess each members contribution to the project.", marks: 20 },
+    { date: "30 Apr", year: "2026", title: "Final Check List Submission", color: "from-yellow-500/20 to-transparent", border: "border-yellow-500/30", text: "text-yellow-400", dot: "bg-yellow-400", description: "Validation of final project artifacts, deployment status, and source code ownership." },
+    { date: "27–06 May", year: "2026", title: "Website Evaluation & Logbook Submission", color: "from-yellow-500/20 to-transparent", border: "border-yellow-500/30", text: "text-yellow-400", dot: "bg-yellow-400", description: "Status of the project is validated through the Logbook. This also includes, Status documents 1 & 2.", marks: 3 },
 
-    { date: "04 May", year: "2026", title: "Research paper submission", color: "from-emerald-500/20 to-transparent", border: "border-emerald-500/30", text: "text-emerald-400", dot: "bg-emerald-400", description: "Describes the contribution to existing knowledge, with due recognition to all referenced work in the creation of new knowledge.", marks: 10 },
-    { date: "30 May", year: "2026", title: "Paper evidence", color: "from-emerald-500/20 to-transparent", border: "border-emerald-500/30", text: "text-emerald-400", dot: "bg-emerald-400", description: "Submission of proof from credible academic conferences or journals indicating publication acceptance." },
+    { date: "08 May", year: "2026", title: "Research paper Submission", color: "from-emerald-500/20 to-transparent", border: "border-emerald-500/30", text: "text-emerald-400", dot: "bg-emerald-400", description: "Describes the contribution to existing knowledge, with due recognition to all referenced work in the creation of new knowledge.", marks: 10 },
+    { date: "13 May", year: "2026", title: "Final Thesis Submission", color: "from-emerald-500/20 to-transparent", border: "border-emerald-500/30", text: "text-emerald-400", dot: "bg-emerald-400", description: "Describes the contribution to existing knowledge, with due recognition to all referenced work in the creation of new knowledge.", marks: 10 },
+    { date: "15 Jun", year: "2026", title: "Research Paper Publication Evidence Submission", color: "from-emerald-500/20 to-transparent", border: "border-emerald-500/30", text: "text-emerald-400", dot: "bg-emerald-400", description: "Submission of proof from credible academic conferences or journals indicating publication acceptance." },
   ]
 
   // S-Curve 16:9 ratio mapping coords for a 1000x500 virtual canvas
   const mapPoints = [
     { x: 100, y: 100 }, { x: 260, y: 100 }, { x: 420, y: 100 }, { x: 580, y: 100 }, { x: 740, y: 100 }, { x: 900, y: 100 },
     { x: 900, y: 250 }, { x: 740, y: 250 }, { x: 580, y: 250 }, { x: 420, y: 250 }, { x: 260, y: 250 }, { x: 100, y: 250 },
-    { x: 100, y: 400 }, { x: 260, y: 400 }, { x: 420, y: 400 }, { x: 580, y: 400 }, { x: 750, y: 400 }
+    { x: 100, y: 400 }, { x: 260, y: 400 }, { x: 420, y: 400 }, { x: 580, y: 400 }, { x: 750, y: 400 }, { x: 900, y: 400 }
   ]
 
   const activeEvent = timelineEvents[activeIdx]
@@ -306,7 +307,7 @@ export function TimelineSection() {
               <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(6,182,212,0.05),transparent_70%)] pointer-events-none" />
               
               {/* Dashed SVG Trail */}
-              <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-40" viewBox="0 0 1000 500" preserveAspectRatio="none">
+              {/* <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-40" viewBox="0 0 1000 500" preserveAspectRatio="none">
                 <path 
                   d="M 100 100 L 900 100 A 75 75 0 0 1 900 250 L 100 250 A 75 75 0 0 0 100 400 L 750 400"
                   fill="none"
@@ -315,13 +316,49 @@ export function TimelineSection() {
                   strokeDasharray="8 8"
                   strokeLinecap="round"
                 />
+              </svg> */}
+              
+              {/* Dashed SVG Trail */}
+              {/* <svg 
+                className="absolute inset-0 w-full h-full pointer-events-none opacity-40" 
+                viewBox={`0 0 ${Math.max(...mapPoints.map(p => p.x)) + 100} 500`} 
+                preserveAspectRatio="none"
+              >
+                <polyline
+                  fill="none"
+                  stroke="#06b6d4"
+                  strokeWidth="3"
+                  strokeDasharray="8 8"
+                  strokeLinecap="round"
+                  points={mapPoints.map(p => `${p.x},${p.y}`).join(' ')}
+                />
+              </svg> */}
+
+              {/* Dashed SVG Trail */}
+              <svg 
+                className="absolute inset-0 w-full h-full pointer-events-none opacity-40" 
+                viewBox="0 0 1000 500"
+                preserveAspectRatio="none"
+              >
+                <path
+                  fill="none"
+                  stroke="#06b6d4"
+                  strokeWidth="3"
+                  strokeDasharray="8 8"
+                  strokeLinecap="round"
+                  d="M 100 100 
+                    L 900 100 
+                    A 75 75 0 0 1 900 250 
+                    L 100 250 
+                    A 75 75 0 0 0 100 400 
+                    L 900 400"
+                />
               </svg>
 
               {/* Interactive Waypoints */}
               {timelineEvents.map((event, i) => {
                 const p = mapPoints[i];
                 const isActive = activeIdx === i;
-                
                 return (
                   <button
                     key={i}
@@ -332,9 +369,9 @@ export function TimelineSection() {
                   >
                     {/* Waypoint Circle */}
                     <div className={`w-8 h-8 rounded-full border border-border flex items-center justify-center transition-colors ${isActive ? 'bg-mtfl/20 shadow-[0_0_20px_rgba(6,182,212,0.6)]' : 'bg-background shadow-lg hover:bg-card'}`}>
-                       <div className={`w-3 h-3 rounded-full ${isActive ? 'bg-mtfl animate-pulse' : 'bg-muted-foreground/30'}`} />
+                      <div className={`w-3 h-3 rounded-full ${isActive ? 'bg-mtfl animate-pulse' : 'bg-muted-foreground/30'}`} />
                     </div>
-                    
+
                     {/* Date & Title Marker */}
                     <div className="absolute top-10 whitespace-nowrap text-center pointer-events-none drop-shadow-md">
                       <span className={`block text-[10px] sm:text-xs font-bold uppercase tracking-widest ${isActive ? 'text-white' : 'text-muted-foreground'}`}>
@@ -348,7 +385,7 @@ export function TimelineSection() {
                     </div>
 
                     {/* Destination Trophy */}
-                    {i === 16 && !isActive && (
+                    {i === timelineEvents.length - 1 && !isActive && (
                       <div className="absolute -top-7 text-mtfl opacity-80 animate-bounce pointer-events-none">
                         <Trophy className="w-5 h-5" />
                       </div>
