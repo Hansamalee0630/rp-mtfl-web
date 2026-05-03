@@ -288,8 +288,8 @@ const researchers = [
   {
     name: "Upendra M.M.S.",
     role: "Lead Researcher",
-    domain: "Personalized Insulin & RL",
-    department: "Reinforcement Learning & XAI",
+    domain: "Fairness-Aware AI",
+    department: "Explainable AI (XAI)",
     image: "/mili.png",
     color: "#00ff88",
     initials: "UM",

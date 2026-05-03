@@ -34,7 +34,7 @@ export function MethodologySection() {
     },
     {
       title: "Personalized Multi-Task FL",
-      researcher: "Hansamalee Ekanayake",
+      researcher: "Ekanayake E.M.C.H.",
       icon: Layers,
       borderColor: "border-purple-500/50",
       bgColor: "bg-purple-500/5",
@@ -62,7 +62,7 @@ export function MethodologySection() {
     },
     {
       title: "Multimodal Detection Fusion",
-      researcher: "Perera K.T.D. / Tharushika",
+      researcher: "Perera K.T.D.",
       icon: Eye,
       borderColor: "border-blue-500/50",
       bgColor: "bg-blue-500/5",
@@ -78,12 +78,12 @@ export function MethodologySection() {
 
   return (
     <section id="methodology" className="w-full relative px-4 py-32 bg-black border-t border-border/50 overflow-hidden">
-      
+
       {/* Background ambient light */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[500px] bg-white/5 rounded-[100%] blur-[120px] pointer-events-none" />
 
       <div className="container mx-auto max-w-[1400px] relative z-10">
-        
+
         {/* Header */}
         <motion.div
           initial="hidden"
@@ -104,7 +104,7 @@ export function MethodologySection() {
         </motion.div>
 
         {/* 4 Column Layout */}
-        <motion.div 
+        <motion.div
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-50px" }}
@@ -114,7 +114,7 @@ export function MethodologySection() {
           {methodologies.map((col, idx) => {
             const Icon = col.icon
             return (
-              <motion.div 
+              <motion.div
                 key={idx}
                 variants={itemVariants}
                 className={`relative flex flex-col bg-black/40 border border-white/10 rounded-3xl overflow-hidden group hover:border-white/30 transition-all duration-500`}

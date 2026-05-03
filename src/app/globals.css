@@ -306,3 +306,15 @@ body::before {
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(0, 212, 255, 0.6);
 }
+
+/* ── Custom Cursor Support ─────────────────────── */
+@media (pointer: fine) {
+  body, a, button, [role="button"] {
+    cursor: none;
+  }
+  
+  /* Force hide on all elements except text inputs */
+  *:not(input):not(textarea):not([contenteditable="true"]) {
+    cursor: none !important;
+  }
+}

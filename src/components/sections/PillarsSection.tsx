@@ -16,7 +16,7 @@
 //     },
 //     {
 //       id: "insulin-optimization",
-//       title: "Personalized Insulin Dosing & Lifestyle Optimization",
+//       title: "Fair & Explainable FL for Diabetes Readmission",
 //       lead: "Upendra M.M.S.",
 //       description: "Utilizing Federated Reinforcement Learning and XAI to dynamically recommend optimal insulin doses and lifestyle changes.",
 //       icon: <Syringe className="h-8 w-8 text-emerald-400" />,
@@ -105,9 +105,9 @@ const pillars = [
   {
     id: "insulin-optimization",
     num: "02",
-    title: "Personalized Insulin Dosing & Lifestyle Optimization",
+    title: "Fair & Explainable FL for Diabetes Readmission",
     lead: "Upendra M.M.S.",
-    description: "Utilizing Federated Reinforcement Learning and XAI to dynamically recommend optimal insulin doses and lifestyle changes.",
+    description: "Fair and explainable federated learning for predicting 30-day diabetes readmissions while preserving patient privacy across hospitals.",
     icon: Syringe,
     color: "#00ff88",
     gradient: "from-emerald-500/20 to-transparent",

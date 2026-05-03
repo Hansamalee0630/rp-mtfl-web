@@ -4,6 +4,11 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { CustomCursor } from "@/components/ui/CustomCursor";
+import { ScrollProgress } from "@/components/ui/ScrollProgress";
+import { BackToTop } from "@/components/ui/BackToTop";
+import { SplashScreen } from "@/components/ui/SplashScreen";
+import { Toaster } from "sonner";
 
 const outfit = Outfit({
   variable: "--font-sans",
@@ -38,9 +43,26 @@ export default function RootLayout({
           enableSystem={false}
           disableTransitionOnChange
         >
+          <SplashScreen />
+          <CustomCursor />
+          <ScrollProgress />
+          <BackToTop />
           <Navbar />
           <main className="flex-1">{children}</main>
           <Footer />
+          <Toaster 
+            position="bottom-right" 
+            theme="dark" 
+            toastOptions={{ 
+              style: { 
+                background: 'rgba(0, 0, 0, 0.8)', 
+                backdropFilter: 'blur(16px)', 
+                border: '1px solid rgba(0, 212, 255, 0.3)', 
+                color: '#fff',
+                boxShadow: '0 0 20px rgba(0, 212, 255, 0.15)'
+              } 
+            }} 
+          />
         </ThemeProvider>
       </body>
     </html>

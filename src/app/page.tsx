@@ -13,10 +13,16 @@ import { TeamSection } from "@/components/sections/TeamSection"
 import { TimelineSection } from "@/components/sections/TimelineSection"
 import { TechStackSection } from "@/components/sections/TechStackSection"
 import { MethodologySection } from "@/components/sections/MethodologySection"
+import { DocumentsSection } from "@/components/sections/DocumentsSection"
 import { PresentationsSection } from "@/components/sections/PresentationsSection"
+import { TermTooltip } from "@/components/ui/TermTooltip"
+import { SpotlightCard } from "@/components/ui/SpotlightCard"
+import { ScrambleText } from "@/components/ui/ScrambleText"
 import { PublicationsSection } from "@/components/sections/PublicationsSection"
+import { MagneticButton } from "@/components/ui/MagneticButton"
 import { ContactSection } from "@/components/sections/ContactSection"
 import { LiteratureSection } from "@/components/sections/LiteratureSection"
+import { ParticlesBackground } from "@/components/ui/ParticlesBackground"
 
 const STATS = [
   { value: "4", label: "Research Pillars" },
@@ -49,6 +55,7 @@ export default function Home() {
 
       {/* ── Hero ────────────────────────────────────────── */}
       <section ref={heroRef} className="w-full relative flex flex-col justify-start px-4 overflow-hidden pt-4 lg:pt-8 pb-16 min-h-[85vh]">
+        <ParticlesBackground />
 
         {/* Ambient orbs */}
         <FloatingOrb className="w-[700px] h-[700px] bg-cyan-400 top-[-200px] left-[-200px]" />
@@ -80,30 +87,38 @@ export default function Home() {
               </motion.div>
 
               {/* Headline */}
-              <motion.h1 variants={itemVariants} className="text-5xl md:text-7xl xl:text-8xl font-extrabold tracking-tighter leading-none mb-6">
-                <span className="block text-white/90 pt-2 lg:pt-4">Privacy-First</span>
-                <span className="block gradient-text pb-2 lg:pb-4 pr-2">Diabetes Intelligence</span>
+              <motion.h1 variants={itemVariants} className="text-5xl md:text-7xl xl:text-8xl font-extrabold tracking-tighter leading-none mb-6 relative z-20">
+                <span className="block text-white/90 pt-2 lg:pt-4">
+                  <ScrambleText text="Privacy-First" delay={2200} duration={1200} />
+                </span>
+                <span className="block gradient-text pb-2 lg:pb-4 pr-2">
+                  <ScrambleText text="Diabetes Intelligence" delay={2600} duration={1800} />
+                </span>
               </motion.h1>
 
               {/* Subhead */}
-              <motion.p variants={itemVariants} className="text-base md:text-lg text-white/50 max-w-2xl leading-relaxed font-light mb-8">
-                A unified <span className="text-cyan-400 font-semibold">Multi-Task Federated Learning</span> platform predicting complications,
+              <motion.p variants={itemVariants} className="text-base md:text-lg text-white/50 max-w-2xl leading-relaxed font-light mb-8 relative z-20">
+                A unified <TermTooltip term="Multi-Task Federated Learning" explanation="An AI approach where multiple related tasks are learned simultaneously across decentralized devices without ever sharing raw data." /> platform predicting complications,
                 personalizing therapy, and detecting undiagnosed diabetes — all without raw patient data ever leaving the edge.
               </motion.p>
 
               {/* CTA Buttons */}
-              <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-                <Link href="#framework">
-                  <Button size="lg" className="relative group bg-cyan-500 hover:bg-cyan-400 text-black font-bold px-8 shadow-[0_0_30px_rgba(0,212,255,0.4)] hover:shadow-[0_0_50px_rgba(0,212,255,0.6)] transition-all duration-300 w-full sm:w-auto">
-                    Explore Framework
-                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                  </Button>
-                </Link>
-                <Link href="#pillars">
-                  <Button size="lg" variant="outline" className="border-white/10 text-white/80 hover:border-cyan-500/50 hover:text-cyan-400 hover:bg-cyan-500/5 transition-all duration-300 px-8 hover:shadow-[0_0_20px_rgba(0,212,255,0.1)] w-full sm:w-auto">
-                    View Pillars
-                  </Button>
-                </Link>
+              <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto relative z-20">
+                <MagneticButton>
+                  <Link href="#framework" className="inline-block">
+                    <Button size="lg" className="relative group bg-cyan-500 hover:bg-cyan-400 text-black font-bold px-8 shadow-[0_0_30px_rgba(0,212,255,0.4)] hover:shadow-[0_0_50px_rgba(0,212,255,0.6)] transition-all duration-300 w-full sm:w-auto">
+                      Explore Framework
+                      <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                    </Button>
+                  </Link>
+                </MagneticButton>
+                <MagneticButton>
+                  <Link href="#pillars" className="inline-block">
+                    <Button size="lg" variant="outline" className="border-white/10 text-white/80 hover:border-cyan-500/50 hover:text-cyan-400 hover:bg-cyan-500/5 transition-all duration-300 px-8 hover:shadow-[0_0_20px_rgba(0,212,255,0.1)] w-full sm:w-auto">
+                      View Pillars
+                    </Button>
+                  </Link>
+                </MagneticButton>
               </motion.div>
             </div>
 
@@ -114,13 +129,14 @@ export default function Home() {
                 className="grid grid-cols-2 gap-4 md:gap-6"
               >
                 {STATS.map((s, i) => (
-                  <div 
+                  <SpotlightCard
                     key={i} 
-                    className="flex flex-col items-center justify-center p-6 md:p-8 rounded-[2rem] bg-black/40 border border-white/10 backdrop-blur-md shadow-2xl transition-transform duration-500 hover:-translate-y-2 hover:border-cyan-500/30"
+                    spotlightColor="rgba(0, 212, 255, 0.2)"
+                    className="flex flex-col items-center justify-center p-6 md:p-8 rounded-[2rem] bg-black/40 backdrop-blur-md shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:border-cyan-500/50"
                   >
                     <div className="text-4xl md:text-5xl font-black text-cyan-400 tabular-nums">{s.value}</div>
                     <div className="text-[10px] md:text-xs text-white/40 mt-3 font-bold uppercase tracking-widest text-center">{s.label}</div>
-                  </div>
+                  </SpotlightCard>
                 ))}
               </motion.div>
             </div>
@@ -224,12 +240,16 @@ export default function Home() {
                       </div>
                     </div>
                     <h3 className="font-extrabold text-cyan-400 text-center text-base md:text-lg leading-tight mb-3">Global Aggregation</h3>
-                    <div className="flex items-center justify-center gap-1.5 bg-emerald-500/10 border border-emerald-500/20 rounded-lg px-3 py-1.5">
+                    <div className="flex items-center justify-center gap-1.5 bg-emerald-500/10 border border-emerald-500/20 rounded-lg px-3 py-1.5 mt-2">
                       <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" />
-                      <span className="text-xs text-emerald-400 font-semibold">ε-Differential Privacy</span>
+                      <span className="text-xs text-emerald-400 font-semibold">
+                        <TermTooltip term="ε-Differential Privacy" explanation="A mathematical framework that guarantees data privacy by injecting calibrated noise during aggregation (ε determines the privacy-accuracy tradeoff)." />
+                      </span>
                     </div>
                   </div>
-                  <div className="text-xs text-cyan-400/60 font-mono">FedAvg + MTFL</div>
+                  <div className="text-xs text-cyan-400/60 font-mono mt-3 relative z-30">
+                    <TermTooltip term="FedAvg" explanation="Federated Averaging: An algorithm that aggregates locally trained model weights from multiple clients into a single global model." /> + MTFL
+                  </div>
                 </motion.div>
 
                 {/* Right node */}
@@ -288,6 +308,7 @@ export default function Home() {
       {/* ── Content Sections ──────────────────────────── */}
       <TechStackSection />
       <TimelineSection />
+      <DocumentsSection />
       <PresentationsSection />
       <PublicationsSection />
       <TeamSection />

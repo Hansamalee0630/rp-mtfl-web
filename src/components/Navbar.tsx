@@ -3,20 +3,11 @@
 import * as React from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Activity, ShieldCheck, Database, Menu, X, Share2 } from "lucide-react"
-import { Badge } from "@/components/ui/badge"
+import { Menu, X, Share2 } from "lucide-react"
 
 export function Navbar() {
   const [isOpen, setIsOpen] = React.useState(false)
   const pathname = usePathname()
-  const [status, setStatus] = React.useState<"aggregating" | "privacy">("aggregating")
-
-  React.useEffect(() => {
-    const interval = setInterval(() => {
-      setStatus((prev) => (prev === "aggregating" ? "privacy" : "aggregating"))
-    }, 4000)
-    return () => clearInterval(interval)
-  }, [])
 
   const navItems = [
     { name: "Home", href: "/" },
@@ -26,6 +17,7 @@ export function Navbar() {
     { name: "Methodology", href: "#methodology" },
     { name: "Tech Stack", href: "#tech-stack" },
     { name: "Timeline", href: "#timeline" },
+    { name: "Documents", href: "#documents" },
     { name: "Presentations", href: "#presentations" },
     { name: "Publications", href: "#publications" },
     { name: "Team", href: "#team" },
@@ -60,22 +52,7 @@ export function Navbar() {
         </div>
 
         <div className="flex items-center gap-4">
-          {/* Federated Status Widget */}
-          <div className="hidden xl:flex items-center gap-2">
-            <Badge variant="outline" className="h-8 border-mtfl/30 bg-mtfl/10 text-mtfl animate-pulse">
-              {status === "aggregating" ? (
-                <>
-                  <Activity className="h-3.5 w-3.5 mr-1.5" />
-                  Status: Aggregating...
-                </>
-              ) : (
-                <>
-                  <ShieldCheck className="h-3.5 w-3.5 mr-1.5 text-ethical" />
-                  <span className="text-ethical">Privacy: DP-Enabled (ε ≤ 1.0)</span>
-                </>
-              )}
-            </Badge>
-          </div>
+
 
           <button
             className="lg:hidden p-2 text-foreground/80 hover:text-foreground"

@@ -1,17 +1,32 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Send, MessageSquare, Mail, MapPin } from "lucide-react"
+import { Send, MessageSquare, Mail, MapPin, Copy } from "lucide-react"
+import { toast } from "sonner"
 
 export function ContactSection() {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    e.currentTarget.reset()
+    toast.success("Message Sent Successfully!", {
+      description: "Thank you for reaching out. We will get back to you shortly.",
+    })
+  }
+
+  const handleCopyEmail = (e: React.MouseEvent) => {
+    e.preventDefault()
+    navigator.clipboard.writeText("mtfl.group@gmail.com")
+    toast.success("Email copied to clipboard!")
+  }
+
   return (
     <section id="contact" className="w-full py-24 bg-black relative border-t border-white/10">
-      
+
       {/* Background Glow */}
       <div className="absolute top-1/2 right-0 w-[600px] h-[600px] bg-cyan-500/5 rounded-full blur-[120px] pointer-events-none -translate-y-1/2 translate-x-1/3" />
 
       <div className="container mx-auto px-4 max-w-6xl relative z-10">
-        
+
         {/* Header */}
         <div className="mb-16">
           <motion.div
@@ -22,7 +37,7 @@ export function ContactSection() {
           >
             Contact Us
           </motion.div>
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -34,7 +49,7 @@ export function ContactSection() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-          
+
           {/* Left Column: Form (The E-mail Template) */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -42,12 +57,12 @@ export function ContactSection() {
             viewport={{ once: true }}
             transition={{ type: "spring", stiffness: 100 }}
           >
-            <form className="flex flex-col gap-6" onSubmit={(e) => e.preventDefault()}>
+            <form className="flex flex-col gap-6" onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-white/70 mb-2">Name</label>
-                  <input 
-                    type="text" 
+                  <input
+                    type="text"
                     id="name"
                     placeholder="John Doe"
                     className="w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3 text-white placeholder:text-white/20 focus:outline-none focus:ring-2 focus:ring-cyan-400/50 focus:border-transparent transition-all"
@@ -55,8 +70,8 @@ export function ContactSection() {
                 </div>
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-white/70 mb-2">Email address</label>
-                  <input 
-                    type="email" 
+                  <input
+                    type="email"
                     id="email"
                     placeholder="name@example.com"
                     className="w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3 text-white placeholder:text-white/20 focus:outline-none focus:ring-2 focus:ring-cyan-400/50 focus:border-transparent transition-all"
@@ -66,8 +81,8 @@ export function ContactSection() {
 
               <div>
                 <label htmlFor="subject" className="block text-sm font-medium text-white/70 mb-2">Subject</label>
-                <input 
-                  type="text" 
+                <input
+                  type="text"
                   id="subject"
                   placeholder="Inquiry about MTFL Research"
                   className="w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3 text-white placeholder:text-white/20 focus:outline-none focus:ring-2 focus:ring-cyan-400/50 focus:border-transparent transition-all"
@@ -76,7 +91,7 @@ export function ContactSection() {
 
               <div>
                 <label htmlFor="message" className="block text-sm font-medium text-white/70 mb-2">Message or Query</label>
-                <textarea 
+                <textarea
                   id="message"
                   rows={5}
                   placeholder="How can we help you?"
@@ -84,7 +99,7 @@ export function ContactSection() {
                 />
               </div>
 
-              <button 
+              <button
                 type="submit"
                 className="w-full rounded-xl bg-cyan-400 hover:bg-cyan-300 text-black font-bold py-3.5 px-4 transition-all duration-300 shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:shadow-[0_0_30px_rgba(6,182,212,0.5)] flex items-center justify-center gap-2"
               >
@@ -105,9 +120,9 @@ export function ContactSection() {
               <MessageSquare className="w-5 h-5 text-cyan-400" />
               General Contact Info
             </h3>
-            
+
             <div className="space-y-6 text-white/70 text-lg leading-relaxed mb-8">
-              
+
               {/* Email Block */}
               <div className="flex items-start gap-4">
                 <div className="w-10 h-10 rounded-full bg-cyan-500/10 flex items-center justify-center flex-shrink-0 mt-1">
@@ -115,9 +130,13 @@ export function ContactSection() {
                 </div>
                 <div>
                   <p className="text-sm font-bold text-white/50 uppercase tracking-widest mb-1">Email</p>
-                  <a href="mailto:mtfl.group@gmail.com" className="text-white/90 hover:text-cyan-400 transition-colors font-medium">
-                    mtfl.group@gmail.com
-                  </a>
+                  <button
+                    onClick={handleCopyEmail}
+                    className="group flex items-center gap-2 text-white/90 hover:text-cyan-400 transition-colors font-medium cursor-pointer"
+                  >
+                    mtfl.group.140@gmail.com
+                    <Copy className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  </button>
                 </div>
               </div>
 
@@ -129,7 +148,7 @@ export function ContactSection() {
                 <div>
                   <p className="text-sm font-bold text-white/50 uppercase tracking-widest mb-1">Institution</p>
                   <p className="text-white/90 font-medium">
-                    Sri Lanka Institute of Information Technology (SLIIT)<br/>
+                    Sri Lanka Institute of Information Technology (SLIIT)<br />
                     <span className="text-white/50 text-sm font-normal">New Kandy Road, Malabe, Sri Lanka</span>
                   </p>
                 </div>
