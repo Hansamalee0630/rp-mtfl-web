@@ -1,5 +1,3 @@
-
-
 "use client"
 
 import { motion, useInView } from "framer-motion"
@@ -214,8 +212,8 @@ export function ResearchFrameworkSection() {
                 Our methodology isolates global parameters safely via{" "}
                 <span className="text-cyan-400 font-semibold">Differential Privacy mechanisms</span>, whilst allowing
                 local edge nodes to train specialized feature-extraction layers. Leveraging{" "}
-                <span className="text-emerald-400 font-semibold">Federated Reinforcement Learning</span>, we prescribe
-                tailored insulin dosages responsive to individual metabolic reactions. By unifying{" "}
+                <span className="text-emerald-400 font-semibold">Fairness-Aware Aggregation</span>, we dynamically penalize 
+                demographic bias during federated training to ensure equitable readmission predictions across gender and racial cohorts By unifying{" "}
                 <span className="text-violet-400 font-semibold">Multi-Task parameters</span>, we offset the accuracy
                 degradation historically caused by the 6-Metric non-IID conditions.
               </p>

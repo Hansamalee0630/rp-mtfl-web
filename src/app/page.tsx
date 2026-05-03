@@ -24,11 +24,18 @@ import { ContactSection } from "@/components/sections/ContactSection"
 import { LiteratureSection } from "@/components/sections/LiteratureSection"
 import { ParticlesBackground } from "@/components/ui/ParticlesBackground"
 
+// const STATS = [
+//   { value: "4", label: "Research Pillars" },
+//   { value: "6", label: "Non-IID Metrics" },
+//   { value: "ε-DP", label: "Privacy Budget" },
+//   { value: "FL+RL", label: "Core Paradigm" },
+// ]
+
 const STATS = [
-  { value: "4", label: "Research Pillars" },
-  { value: "6", label: "Non-IID Metrics" },
-  { value: "ε-DP", label: "Privacy Budget" },
-  { value: "FL+RL", label: "Core Paradigm" },
+  { value: "MTFL", label: "Core Architecture" },       // Hansa's Component 1
+  { value: "EHR+Vision", label: "Multimodal Fusion" }, // Tharushika's Component 2
+  { value: "ε-DP", label: "Local Privacy" },           // Oshadhi's Component 3
+  { value: "XAI", label: "Clinical Transparency" },    // Mihili & Tharushika's Explainability
 ]
 
 const FloatingOrb = ({ className }: { className?: string }) => (

@@ -69,7 +69,7 @@ export function MethodologySection() {
       accent: "text-blue-400",
       points: [
         { name: "Multimodal Data Integration", desc: "Fuses high-resolution retinal fundus images with structured Electronic Health Records (EHR) to provide a holistic patient representation." },
-        { name: "Hybrid Neural Networks", desc: "Extracts visual features using Convolutional Neural Networks (ResNet-18) while a Multilayer Perceptron (MLP) processes structured clinical patterns." },
+        { name: "Hybrid Neural Networks", desc: "Extracts visual features using Convolutional Neural Networks (EfficientNet-B3) while a Multilayer Perceptron (MLP) processes structured clinical patterns." },
         { name: "Late Fusion & FedAvg", desc: "Combines model outputs via attention or concatenation mechanisms, utilizing Federated Averaging across hospitals without sharing raw patient data." },
         { name: "Dual Explainable AI (XAI)", desc: "Generates SHAP values to quantify the impact of tabular EHR features, and Grad-CAM heatmaps to visually isolate microvascular damage in retinal scans." }
       ]
