@@ -204,6 +204,11 @@ export default function Home() {
                 {/* Top / bottom */}
                 <line x1="50%" y1="12%" x2="50%" y2="36%" stroke="#00ff88" strokeWidth="1.5" strokeDasharray="8 6" className="animate-dash-reverse" opacity="0.4" />
                 <line x1="50%" y1="88%" x2="50%" y2="64%" stroke="#8b5cf6" strokeWidth="1.5" strokeDasharray="8 6" className="animate-dash-reverse" opacity="0.4" />
+                
+                {/* Line Labels */}
+                <text x="31%" y="48%" fill="rgba(0, 212, 255, 0.7)" fontSize="9" fontWeight="bold" textAnchor="middle" letterSpacing="0.1em" className="uppercase hidden md:block">Encrypted Gradient Upload</text>
+                <text x="69%" y="48%" fill="rgba(0, 212, 255, 0.7)" fontSize="9" fontWeight="bold" textAnchor="middle" letterSpacing="0.1em" className="uppercase hidden md:block">Encrypted Gradient Upload</text>
+
                 {/* Glow dot centres */}
                 <circle cx="22%" cy="50%" r="4" fill="#00d4ff" opacity="0.7" />
                 <circle cx="78%" cy="50%" r="4" fill="#00d4ff" opacity="0.7" />
@@ -225,8 +230,8 @@ export default function Home() {
                     <div className="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center mb-4 mx-auto group-hover:bg-cyan-500/20 transition-colors">
                       <Smartphone className="w-6 h-6 text-cyan-400" />
                     </div>
-                    <p className="font-bold text-sm text-white/90 text-center">Edge Node A</p>
-                    <p className="text-xs text-white/40 text-center mt-1">EHR & Wearables</p>
+                    <p className="font-bold text-sm text-white/90 text-center">Hospital Client A</p>
+                    <p className="text-xs text-white/40 text-center mt-1">Structured clinical EHR</p>
                     <div className="mt-3 flex gap-1 justify-center">
                       {[...Array(3)].map((_, i) => (
                         <div key={i} className="h-1 w-4 rounded-full bg-cyan-500/30" style={{ animationDelay: `${i * 200}ms` }} />
@@ -252,16 +257,21 @@ export default function Home() {
                         <Server className="w-7 h-7 text-cyan-400" />
                       </div>
                     </div>
-                    <h3 className="font-extrabold text-cyan-400 text-center text-base md:text-lg leading-tight mb-3">Global Aggregation</h3>
+                    <h3 className="font-extrabold text-cyan-400 text-center text-base md:text-lg leading-tight mb-1">Global Aggregation</h3>
+                    <p className="text-[10px] text-cyan-400/60 font-bold tracking-widest uppercase mb-3 text-center">FedAvg (Flower Framework)</p>
                     <div className="flex items-center justify-center gap-1.5 bg-emerald-500/10 border border-emerald-500/20 rounded-lg px-3 py-1.5 mt-2">
                       <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" />
                       <span className="text-xs text-emerald-400 font-semibold">
-                        <TermTooltip term="ε-Differential Privacy" explanation="A mathematical framework that guarantees data privacy by injecting calibrated noise during aggregation (ε determines the privacy-accuracy tradeoff)." />
+                        <TermTooltip term="Local DP-SGD (Opacus Engine)" explanation="A mathematical framework that guarantees data privacy by injecting calibrated noise during aggregation." />
                       </span>
                     </div>
                   </div>
-                  <div className="text-xs text-cyan-400/60 font-mono mt-3 relative z-30">
-                    <TermTooltip term="FedAvg" explanation="Federated Averaging: An algorithm that aggregates locally trained model weights from multiple clients into a single global model." /> + MTFL
+                  <div className="text-xs text-cyan-400/60 font-mono mt-3 relative z-30 flex flex-col items-center gap-3">
+                    <span><TermTooltip term="Unified Multi-Task & Multimodal Weights" explanation="Combining representations from multiple tasks and data modalities into a cohesive global model." /></span>
+                    <div className="flex items-center gap-1.5 px-3 py-1.5 bg-rose-500/10 border border-rose-500/20 rounded-full shadow-[0_0_15px_rgba(244,63,94,0.1)]">
+                      <Network className="w-3.5 h-3.5 text-rose-400" />
+                      <span className="text-[10px] text-rose-400 font-bold uppercase tracking-widest">Sequential Dependency Bridge</span>
+                    </div>
                   </div>
                 </motion.div>
 
@@ -276,8 +286,8 @@ export default function Home() {
                     <div className="w-12 h-12 rounded-xl bg-violet-500/10 border border-violet-500/20 flex items-center justify-center mb-4 mx-auto group-hover:bg-violet-500/20 transition-colors">
                       <Database className="w-6 h-6 text-violet-400" />
                     </div>
-                    <p className="font-bold text-sm text-white/90 text-center">Institution B</p>
-                    <p className="text-xs text-white/40 text-center mt-1">Retinal Imaging Data</p>
+                    <p className="font-bold text-sm text-white/90 text-center">Hospital Client B</p>
+                    <p className="text-xs text-white/40 text-center mt-1">Retinal fundus images</p>
                     <div className="mt-3 flex gap-1 justify-center">
                       {[...Array(3)].map((_, i) => (
                         <div key={i} className="h-1 w-4 rounded-full bg-violet-500/30" style={{ animationDelay: `${i * 200}ms` }} />

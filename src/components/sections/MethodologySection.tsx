@@ -26,10 +26,10 @@ export function MethodologySection() {
       bgColor: "bg-emerald-500/5",
       accent: "text-emerald-400",
       points: [
-        { name: "Hybrid Privacy-Preserving Scaling", desc: "Employs global categorical encoding combined with local numeric scaling per hospital to prevent statistical data leakage." },
-        { name: "Non-IID Quantification", desc: "Utilizes a 6-metric framework (including Jensen-Shannon divergence and Covariate shift) to measure data heterogeneity across federated nodes." },
-        { name: "Fairness-Aware FedAvg", desc: "Integrates real-time gender fairness monitoring directly into the federated training loop to achieve a recall gap of less than 3%." },
-        { name: "Explainability Audit", desc: "Validates feature importance using a 3-run SHAP stability assessment and a comprehensive 6-metric fairness audit." }
+        { name: "Hybrid Scaling", desc: "Global categorical encoding + local numeric scaling." },
+        { name: "Non-IID Quantification", desc: "Using a 6-metric framework including Jensen-Shannon divergence and Covariate shift." },
+        { name: "Fairness-Aware FedAvg", desc: "Implementation of fairness-aware FedAvg with real-time gender fairness monitoring to achieve a recall gap of <3%." },
+        { name: "Explainability Audit", desc: "Validation of feature importance via 3-run SHAP stability assessment." }
       ]
     },
     {
@@ -40,10 +40,10 @@ export function MethodologySection() {
       bgColor: "bg-purple-500/5",
       accent: "text-purple-400",
       points: [
-        { name: "Multi-Task Architecture", desc: "Utilizes a shared-bottom neural network with a shared feature extractor and task-specific heads for simultaneously predicting related comorbidities like hypertension and heart failure." },
-        { name: "Client-Specific Personalization", desc: "Adapts the global model to local non-IID data distributions using MAML-inspired local fine-tuning, L2 regularization, and adaptive parameter sharing." },
-        { name: "Privacy & Aggregation", desc: "Protects patient data by injecting Gaussian noise via Differential Privacy (DP) and employing secure aggregation protocols." },
-        { name: "Federated Averaging (FedAvg)", desc: "Aggregates weighted client updates centrally while monitoring post-aggregation demographic parity to ensure equitable predictions." }
+        { name: "Shared-Bottom Architecture", desc: "Neural network architecture for simultaneous prediction of hypertension and heart failure." },
+        { name: "Layer-Wise Personalization", desc: "Adaptive personalization through local fine-tuning to achieve a 30.14% relative accuracy improvement." },
+        { name: "Local Differential Privacy", desc: "Privacy preserved via Local DP-SGD with Gaussian noise injection." },
+        { name: "Communication Efficiency", desc: "66.6% reduction in communication payload using hard-parameter sharing." }
       ]
     },
     {
@@ -54,10 +54,10 @@ export function MethodologySection() {
       bgColor: "bg-rose-500/5",
       accent: "text-rose-400",
       points: [
-        { name: "Chain Model Architecture", desc: "Implements a sequential prediction framework mapping disease progression: Diabetes Status → Nephropathy Risk → Cardiovascular Disease (CVD) Risk." },
-        { name: "Differential Privacy (DP)", desc: "Injects calibrated DP noise directly at the data preprocessing level to protect sensitive attributes and ensure an anonymized dataset." },
-        { name: "Dependency Modeling", desc: "Exploits the conditional dependencies between complications, using the nephropathy risk output alongside patient data to calculate the subsequent CVD risk." },
-        { name: "Fuzzy Risk Interpretation", desc: "Applies fuzzy logic to transform model outputs into clinically meaningful risk levels (low, medium, high), improving interpretability under uncertainty." }
+        { name: "Chain Model Framework", desc: "Mapping disease progression: Diabetes Status → Nephropathy → CVD Risk." },
+        { name: "Dependency Exploitation", desc: "Uses a Stage 1 nephropathy risk 'Bridge Feature' to raise CVD AUC to 0.9452." },
+        { name: "Calibrated DP Noise", desc: "Injection of calibrated Differential Privacy noise via the Opacus library." },
+        { name: "Fuzzy Logic Interpretation", desc: "Use of fuzzy logic risk interpretation to handle clinical uncertainty." }
       ]
     },
     {
@@ -68,10 +68,10 @@ export function MethodologySection() {
       bgColor: "bg-blue-500/5",
       accent: "text-blue-400",
       points: [
-        { name: "Multimodal Data Integration", desc: "Fuses high-resolution retinal fundus images with structured Electronic Health Records (EHR) to provide a holistic patient representation." },
-        { name: "Hybrid Neural Networks", desc: "Extracts visual features using Convolutional Neural Networks (EfficientNet-B3) while a Multilayer Perceptron (MLP) processes structured clinical patterns." },
-        { name: "Late Fusion & FedAvg", desc: "Combines model outputs via attention or concatenation mechanisms, utilizing Federated Averaging across hospitals without sharing raw patient data." },
-        { name: "Dual Explainable AI (XAI)", desc: "Generates SHAP values to quantify the impact of tabular EHR features, and Grad-CAM heatmaps to visually isolate microvascular damage in retinal scans." }
+        { name: "Multimodal Late Fusion", desc: "Late Fusion of structured EHR and high-resolution retinal fundus images." },
+        { name: "Hybrid Architecture", desc: "Utilizing EfficientNet-B3 for visual features and MLP for clinical patterns." },
+        { name: "Hardware Optimization", desc: "Optimized on NVIDIA A100 with feature pre-computation for 70% latency reduction." },
+        { name: "Dual XAI Integration", desc: "Using SHAP for EHR and Grad-CAM for retinal microvascular damage localization." }
       ]
     }
   ]
