@@ -1046,8 +1046,7 @@ export function LiteratureSection() {
                   <div>
                     <p className="text-[14px] font-bold text-red-400 mb-1">The Non-IID bottleneck</p>
                     <p className="text-[16px] text-white/50 leading-relaxed">
-                      Classic FedAvg collapses catastrophically when hospital data distributions diverge due to differing
-                      patient demographics and clinical equipment.
+                      Classic FedAvg collapses; our team identified a "Moderate Heterogeneity" score of 0.33 using a 6-metric framework, which strongly justifies shifting toward personalized and fairness-aware aggregation.
                     </p>
                   </div>
                 </div>
@@ -1069,7 +1068,7 @@ export function LiteratureSection() {
                   How can a{" "}
                   <strong className="text-white/80 font-semibold">decentralized, privacy-preserving ML framework</strong>{" "}
                   be developed that fuses multimodal data (EHR + retinal images) to predict undiagnosed diabetes
-                  and sequential complications, while ensuring{" "}
+                  alongside interrelated comorbidities (Hypertension, Heart Failure, Nephropathy, and Cardiovascular Disease (CVD)), while ensuring{" "}
                   <strong className="text-white/80 font-semibold">demographic fairness</strong> and clinical
                   interpretability across heterogeneous hospital networks?
                 </p>

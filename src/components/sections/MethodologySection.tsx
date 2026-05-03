@@ -2,6 +2,7 @@
 
 import { motion, Variants } from "framer-motion"
 import { Layers, Activity, GitBranch, Eye } from "lucide-react"
+import { SpotlightCard } from "@/components/ui/SpotlightCard"
 
 export function MethodologySection() {
   const containerVariants: Variants = {
@@ -25,10 +26,11 @@ export function MethodologySection() {
       borderColor: "border-emerald-500/50",
       bgColor: "bg-emerald-500/5",
       accent: "text-emerald-400",
+      spotlightColor: "rgba(16, 185, 129, 0.2)",
       points: [
         { name: "Hybrid Scaling", desc: "Global categorical encoding + local numeric scaling." },
         { name: "Non-IID Quantification", desc: "Using a 6-metric framework including Jensen-Shannon divergence and Covariate shift." },
-        { name: "Fairness-Aware FedAvg", desc: "Implementation of fairness-aware FedAvg with real-time gender fairness monitoring to achieve a recall gap of <3%." },
+        { name: "Fairness-Aware FedAvg", desc: "Reduces the gender recall gap from 8.2% to 2.1% through fairness-aware FedAvg, utilizing the Opacus library for DP-SGD." },
         { name: "Explainability Audit", desc: "Validation of feature importance via 3-run SHAP stability assessment." }
       ]
     },
@@ -39,9 +41,10 @@ export function MethodologySection() {
       borderColor: "border-purple-500/50",
       bgColor: "bg-purple-500/5",
       accent: "text-purple-400",
+      spotlightColor: "rgba(168, 85, 247, 0.2)",
       points: [
         { name: "Shared-Bottom Architecture", desc: "Neural network architecture for simultaneous prediction of hypertension and heart failure." },
-        { name: "Layer-Wise Personalization", desc: "Adaptive personalization through local fine-tuning to achieve a 30.14% relative accuracy improvement." },
+        { name: "Layer-Wise Personalization", desc: "Achieved a 30.14% relative accuracy improvement over generic global baselines through layer-wise fine-tuning." },
         { name: "Local Differential Privacy", desc: "Privacy preserved via Local DP-SGD with Gaussian noise injection." },
         { name: "Communication Efficiency", desc: "66.6% reduction in communication payload using hard-parameter sharing." }
       ]
@@ -53,9 +56,10 @@ export function MethodologySection() {
       borderColor: "border-rose-500/50",
       bgColor: "bg-rose-500/5",
       accent: "text-rose-400",
+      spotlightColor: "rgba(244, 63, 94, 0.2)",
       points: [
         { name: "Chain Model Framework", desc: "Mapping disease progression: Diabetes Status → Nephropathy → CVD Risk." },
-        { name: "Dependency Exploitation", desc: "Uses a Stage 1 nephropathy risk 'Bridge Feature' to raise CVD AUC to 0.9452." },
+        { name: "Dependency Exploitation", desc: "Utilizes a 'Dependency Bridge' from Stage 1 nephropathy risk to raise the CVD prediction AUC to 0.9452." },
         { name: "Calibrated DP Noise", desc: "Injection of calibrated Differential Privacy noise via the Opacus library." },
         { name: "Fuzzy Logic Interpretation", desc: "Use of fuzzy logic risk interpretation to handle clinical uncertainty." }
       ]
@@ -67,9 +71,10 @@ export function MethodologySection() {
       borderColor: "border-blue-500/50",
       bgColor: "bg-blue-500/5",
       accent: "text-blue-400",
+      spotlightColor: "rgba(59, 130, 246, 0.2)",
       points: [
-        { name: "Multimodal Late Fusion", desc: "Late Fusion of structured EHR and high-resolution retinal fundus images." },
-        { name: "Hybrid Architecture", desc: "Utilizing EfficientNet-B3 for visual features and MLP for clinical patterns." },
+        { name: "Multimodal Late Fusion", desc: "Late Fusion of structured EHR and retinal fundus images specifically targeting undiagnosed diabetes." },
+        { name: "Hybrid Architecture", desc: "Combines an EfficientNet-B3 backbone for visual features with an MLP for clinical patterns, achieving high precision via a 0.90 optimal threshold." },
         { name: "Hardware Optimization", desc: "Optimized on NVIDIA A100 with feature pre-computation for 70% latency reduction." },
         { name: "Dual XAI Integration", desc: "Using SHAP for EHR and Grad-CAM for retinal microvascular damage localization." }
       ]
@@ -117,34 +122,38 @@ export function MethodologySection() {
               <motion.div
                 key={idx}
                 variants={itemVariants}
-                className={`relative flex flex-col bg-black/40 border border-white/10 rounded-3xl overflow-hidden group hover:border-white/30 transition-all duration-500`}
+                className="h-full"
               >
-                {/* Colored Top Edge Accent */}
-                <div className={`absolute top-0 left-0 right-0 h-1 ${col.bgColor} group-hover:h-1.5 transition-all duration-300`} />
-                <div className={`absolute -top-24 -right-24 w-48 h-48 rounded-full blur-3xl opacity-20 pointer-events-none ${col.bgColor.replace('/5', '')}`} />
+                <SpotlightCard
+                  spotlightColor={col.spotlightColor}
+                  className={`relative flex flex-col h-full bg-black/40 border border-white/10 rounded-3xl overflow-hidden group hover:border-white/30 transition-all duration-500`}
+                >
+                  {/* Colored Top Edge Accent */}
+                  <div className={`absolute top-0 left-0 right-0 h-1 ${col.bgColor} group-hover:h-1.5 transition-all duration-300`} />
+                  <div className={`absolute -top-24 -right-24 w-48 h-48 rounded-full blur-3xl opacity-20 pointer-events-none ${col.bgColor.replace('/5', '')}`} />
 
-                {/* Header Area */}
-                <div className="p-8 pb-5 border-b border-white/5 relative z-10 bg-white/[0.02]">
-                  <div className={`w-12 h-12 rounded-2xl flex items-center justify-center mb-5 border ${col.borderColor} ${col.bgColor}`}>
-                    <Icon className={`w-6 h-6 ${col.accent}`} />
-                  </div>
-                  <h3 className="text-2xl font-bold text-white mb-2 leading-tight min-h-[64px]">{col.title}</h3>
-                  <div className="inline-block px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-bold tracking-wider text-white/60">
-                    {col.researcher}
-                  </div>
-                </div>
-
-                {/* Points List */}
-                <div className="p-8 pt-6 flex-1 flex flex-col gap-6 relative z-10">
-                  {col.points.map((pt, pIdx) => (
-                    <div key={pIdx} className="relative pl-5">
-                      <div className={`absolute left-0 top-1.5 w-2 h-2 rounded-full ${col.bgColor.replace('/5', '')} border border-black shadow-[0_0_8px_currentColor] ${col.accent}`} />
-                      <h4 className="text-white font-semibold text-sm mb-1.5">{pt.name}</h4>
-                      <p className="text-white/50 text-xs leading-relaxed font-light">{pt.desc}</p>
+                  {/* Header Area */}
+                  <div className="p-8 pb-5 border-b border-white/5 relative z-10 bg-white/[0.02]">
+                    <div className={`w-12 h-12 rounded-2xl flex items-center justify-center mb-5 border ${col.borderColor} ${col.bgColor}`}>
+                      <Icon className={`w-6 h-6 ${col.accent}`} />
                     </div>
-                  ))}
-                </div>
+                    <h3 className="text-2xl font-bold text-white mb-2 leading-tight min-h-[64px]">{col.title}</h3>
+                    <div className="inline-block px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-bold tracking-wider text-white/60">
+                      {col.researcher}
+                    </div>
+                  </div>
 
+                  {/* Points List */}
+                  <div className="p-8 pt-6 flex-1 flex flex-col gap-6 relative z-10">
+                    {col.points.map((pt, pIdx) => (
+                      <div key={pIdx} className="relative pl-5">
+                        <div className={`absolute left-0 top-1.5 w-2 h-2 rounded-full ${col.bgColor.replace('/5', '')} border border-black shadow-[0_0_8px_currentColor] ${col.accent}`} />
+                        <h4 className="text-white font-semibold text-sm mb-1.5">{pt.name}</h4>
+                        <p className="text-white/50 text-xs leading-relaxed font-light">{pt.desc}</p>
+                      </div>
+                    ))}
+                  </div>
+                </SpotlightCard>
               </motion.div>
             )
           })}
