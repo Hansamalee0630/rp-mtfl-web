@@ -61,7 +61,7 @@ export default function Home() {
     <div className="flex flex-col items-center w-full overflow-x-hidden">
 
       {/* ── Hero ────────────────────────────────────────── */}
-      <section ref={heroRef} className="w-full relative flex flex-col justify-start px-4 overflow-hidden pt-4 lg:pt-8 pb-16 min-h-[85vh]">
+      <section id="home" ref={heroRef} className="w-full relative flex flex-col justify-start px-4 overflow-hidden pt-4 lg:pt-8 pb-16 min-h-[85vh]">
         <ParticlesBackground />
 
         {/* Ambient orbs */}
@@ -139,10 +139,16 @@ export default function Home() {
                   <SpotlightCard
                     key={i} 
                     spotlightColor="rgba(0, 212, 255, 0.2)"
-                    className="flex flex-col items-center justify-center p-6 md:p-8 rounded-[2rem] bg-black/40 backdrop-blur-md shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:border-cyan-500/50"
+                    className="rounded-[2rem] bg-black/40 backdrop-blur-md shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:border-cyan-500/50"
                   >
-                    <div className="text-4xl md:text-5xl font-black text-cyan-400 tabular-nums">{s.value}</div>
-                    <div className="text-[10px] md:text-xs text-white/40 mt-3 font-bold uppercase tracking-widest text-center">{s.label}</div>
+                    <div className="flex flex-col items-center justify-center p-4 md:p-6 lg:p-8 w-full h-full text-center">
+                      <div className={`font-black text-cyan-400 tabular-nums leading-tight ${s.value.length > 8 ? 'text-2xl md:text-3xl lg:text-4xl tracking-tight' : s.value.length > 5 ? 'text-3xl md:text-4xl' : 'text-4xl md:text-5xl'}`}>
+                        {s.value}
+                      </div>
+                      <div className="text-[10px] md:text-xs text-white/40 mt-2 font-bold uppercase tracking-widest text-center">
+                        {s.label}
+                      </div>
+                    </div>
                   </SpotlightCard>
                 ))}
               </motion.div>

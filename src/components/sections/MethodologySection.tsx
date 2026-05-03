@@ -57,7 +57,7 @@ export function MethodologySection() {
         { name: "Chain Model Architecture", desc: "Implements a sequential prediction framework mapping disease progression: Diabetes Status → Nephropathy Risk → Cardiovascular Disease (CVD) Risk." },
         { name: "Differential Privacy (DP)", desc: "Injects calibrated DP noise directly at the data preprocessing level to protect sensitive attributes and ensure an anonymized dataset." },
         { name: "Dependency Modeling", desc: "Exploits the conditional dependencies between complications, using the nephropathy risk output alongside patient data to calculate the subsequent CVD risk." },
-        { name: "Bias Mitigation", desc: "Enforces equal opportunity and demographic parity constraints to ensure consistent prediction accuracy across gender, age, and ethnicity." }
+        { name: "Fuzzy Risk Interpretation", desc: "Applies fuzzy logic to transform model outputs into clinically meaningful risk levels (low, medium, high), improving interpretability under uncertainty." }
       ]
     },
     {

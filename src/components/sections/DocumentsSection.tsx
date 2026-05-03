@@ -32,11 +32,11 @@ export function DocumentsSection() {
     },
     {
       title: "Final Documents (Thesis)",
-      status: "Pending Submission",
-      isSubmitted: false,
+      status: "Available",
+      isSubmitted: true,
       count: "4 Thesis + 1 Main",
       icon: <FileCheck className="w-6 h-6" />,
-      link: "https://drive.google.com/drive/folders/1vvqQDMi_ruphjHi-bstJ5qJjap02O_Jf?usp=drive_link"
+      link: "https://drive.google.com/drive/folders/1Elu_ECqhVInE_-lmb1hySsEGD59Ck3Ap"
     }
   ]
 
@@ -106,7 +106,7 @@ export function DocumentsSection() {
               variants={itemVariants}
               className="group relative"
             >
-              <SpotlightCard 
+              <SpotlightCard
                 spotlightColor="rgba(139, 92, 246, 0.25)"
                 className={`w-full h-full flex flex-col rounded-2xl bg-white/[0.02] transition-all duration-300 ${item.isSubmitted ? 'hover:border-violet-400/50 hover:bg-white/[0.04] hover:shadow-[0_0_30px_rgba(139,92,246,0.15)]' : 'opacity-80'}`}
               >
@@ -135,6 +135,8 @@ export function DocumentsSection() {
                   {item.isSubmitted ? (
                     <a
                       href={item.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="flex items-center gap-2 text-sm font-bold text-violet-400 hover:text-violet-300 transition-colors"
                     >
                       View
