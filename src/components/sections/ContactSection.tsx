@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Send, MessageSquare, Mail, MapPin, Copy } from "lucide-react"
+import { Send, MessageSquare, Mail, MapPin } from "lucide-react"
 import { toast } from "sonner"
 
 export function ContactSection() {
@@ -11,11 +11,6 @@ export function ContactSection() {
     toast.success("Message Sent Successfully!", {
       description: "Thank you for reaching out. We will get back to you shortly.",
     })
-  }
-
-  const handleCopyEmail = (e: React.MouseEvent) => {
-    navigator.clipboard.writeText("mtfl.group.140@gmail.com")
-    toast.success("Email copied to clipboard!")
   }
 
   return (
@@ -130,12 +125,12 @@ export function ContactSection() {
                 <div>
                   <p className="text-sm font-bold text-white/50 uppercase tracking-widest mb-1">Email</p>
                   <a
-                    href="mailto:mtfl.group.140@gmail.com"
-                    onClick={handleCopyEmail}
+                    href="https://mail.google.com/mail/?view=cm&fs=1&to=mtfl.group.140@gmail.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="group flex items-center gap-2 text-white/90 hover:text-cyan-400 transition-colors font-medium cursor-pointer"
                   >
                     mtfl.group.140@gmail.com
-                    <Copy className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity" />
                   </a>
                 </div>
               </div>
