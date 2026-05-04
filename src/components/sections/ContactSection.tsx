@@ -14,8 +14,7 @@ export function ContactSection() {
   }
 
   const handleCopyEmail = (e: React.MouseEvent) => {
-    e.preventDefault()
-    navigator.clipboard.writeText("mtfl.group@gmail.com")
+    navigator.clipboard.writeText("mtfl.group.140@gmail.com")
     toast.success("Email copied to clipboard!")
   }
 
@@ -130,13 +129,14 @@ export function ContactSection() {
                 </div>
                 <div>
                   <p className="text-sm font-bold text-white/50 uppercase tracking-widest mb-1">Email</p>
-                  <button
+                  <a
+                    href="mailto:mtfl.group.140@gmail.com"
                     onClick={handleCopyEmail}
                     className="group flex items-center gap-2 text-white/90 hover:text-cyan-400 transition-colors font-medium cursor-pointer"
                   >
                     mtfl.group.140@gmail.com
                     <Copy className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </button>
+                  </a>
                 </div>
               </div>
 
