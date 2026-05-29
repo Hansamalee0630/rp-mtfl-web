@@ -14,7 +14,15 @@ import {
   Scale, 
   GitBranch, 
   Zap,
-  ShieldCheck
+  ShieldCheck,
+  Play,
+  RotateCcw,
+  Layers,
+  LockKeyhole,
+  BarChart3,
+  CheckCircle2,
+  AlertTriangle,
+  Server
 } from "lucide-react"
 import { useState } from "react"
 import { SpotlightCard } from "@/components/ui/SpotlightCard"
@@ -32,6 +40,53 @@ const PERSPECTIVES = [
 
 export function SystemArchitecture() {
   const [activeView, setActiveView] = useState<ViewPerspective>("all")
+
+  // Zone 4 Cascade Simulation state
+  const [cascadeStep, setCascadeStep] = useState<number>(0) // 0 = idle, 1 = Diabetes, 2 = Nephropathy, 3 = CVD risk, 4 = Complete
+  const [isSimulating, setIsSimulating] = useState<boolean>(false)
+  const [simulatedRisk, setSimulatedRisk] = useState<number>(0)
+
+  // Simulation runner
+  const startSimulation = () => {
+    if (isSimulating) return
+    setIsSimulating(true)
+    setCascadeStep(1)
+    setSimulatedRisk(0)
+
+    let currentStep = 1
+    const timer = setInterval(() => {
+      if (currentStep === 1) {
+        setSimulatedRisk(15)
+        setCascadeStep(2)
+        currentStep = 2
+      } else if (currentStep === 2) {
+        setSimulatedRisk(58)
+        setCascadeStep(3)
+        currentStep = 3
+      } else if (currentStep === 3) {
+        // Count up to 94.5%
+        let val = 58
+        const countUp = setInterval(() => {
+          val += 2.5
+          if (val >= 94.5) {
+            setSimulatedRisk(94.5)
+            setCascadeStep(4)
+            setIsSimulating(false)
+            clearInterval(countUp)
+          } else {
+            setSimulatedRisk(parseFloat(val.toFixed(1)))
+          }
+        }, 30)
+        clearInterval(timer)
+      }
+    }, 1000)
+  }
+
+  const resetSimulation = () => {
+    setCascadeStep(0)
+    setSimulatedRisk(0)
+    setIsSimulating(false)
+  }
 
   // Determine active highlights per card/path
   const isCardActive = (zone: 1 | 2 | 3 | 4) => {
@@ -79,8 +134,8 @@ export function SystemArchitecture() {
           <h2 className="text-4xl md:text-6xl font-extrabold tracking-tighter text-white mb-6">
             Overall <span className="gradient-text">Research Framework</span>
           </h2>
-          <p className="text-white/80 text-lg md:text-xl leading-relaxed font-normal mb-12">
-            An enterprise-grade, privacy-preserving horizontal pipeline. Filter views dynamically on the HUD console below to highlight active cryptographic protections, local adaptions, bias mitigation, or complication risk cascades.
+          <p className="text-white/50 text-[15px] md:text-[16px] max-w-2xl mx-auto leading-relaxed mb-12">
+            An interactive, visual representation of our privacy-preserving horizontal pipeline. Use the HUD deck below to focus on cryptographic guards, fairness aggregation, or fuzzy complication cascades.
           </p>
 
           {/* Interactive HUD Command Console */}
@@ -92,7 +147,7 @@ export function SystemArchitecture() {
                 <button
                   key={perspective.id}
                   onClick={() => setActiveView(perspective.id)}
-                  className={`px-6 py-3.5 rounded-xl text-sm md:text-base font-extrabold border transition-all duration-500 flex items-center gap-2.5 cursor-pointer ${
+                  className={`px-4 py-2 rounded-lg text-xs md:text-sm font-semibold border transition-all duration-500 flex items-center gap-2 cursor-pointer ${
                     isSelected 
                       ? `${perspective.color} bg-white/5 shadow-[0_0_20px_rgba(255,255,255,0.05)] scale-105` 
                       : "border-transparent bg-transparent text-white/50 hover:text-white/90 hover:bg-white/[0.02]"
@@ -127,64 +182,151 @@ export function SystemArchitecture() {
               <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-transparent via-cyan-400 to-transparent opacity-80" />
               
               {/* Zone Tag */}
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-cyan-500/30 bg-cyan-950/20 text-sm font-black uppercase tracking-widest text-cyan-400 w-fit mb-6">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-cyan-500/30 bg-cyan-950/20 text-[10px] font-bold uppercase tracking-widest text-cyan-400/90 w-fit mx-auto mb-4">
                 <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
                 Zone 1: Local Edge
               </div>
 
-              <h3 className="text-white font-extrabold text-xl md:text-2xl tracking-tight leading-snug mb-3">
-                Decentralized Hospital Clients
+              <h3 className="text-white/90 font-extrabold text-lg md:text-xl tracking-tight leading-snug mb-0.5 text-center">
+                Decentralized Clients
               </h3>
-              
-              <p className="text-white/80 text-base leading-relaxed mb-6 font-normal">
-                Securely calculates local parameters directly on-site, ensuring patient privacy borders are never violated.
-              </p>
+              <p className="text-white/45 text-[10px] font-mono mb-4 uppercase tracking-wider text-center">Local Multi-Modal Processing</p>
 
-              {/* Interlocking Inner Grid */}
-              <div className="flex flex-col gap-4 mt-auto">
+              {/* Interlocking Visual Elements */}
+              <div className="flex flex-col gap-6 mt-auto">
                 
-                {/* EHR & Retinal Inputs */}
+                {/* 1. Multimodal Inputs Schematic */}
                 <div className="p-4 rounded-xl border border-white/5 bg-white/[0.01] hover:border-cyan-500/30 transition-all duration-300">
-                  <div className="flex items-center gap-2 mb-2 text-cyan-400">
-                    <Database className="w-4.5 h-4.5" />
-                    <span className="text-sm font-bold uppercase tracking-wider">Multimodal Inputs</span>
+                  <div className="flex items-center justify-center mb-3 text-cyan-400 border-b border-white/5 pb-2">
+                    <div className="flex items-center gap-1.5 justify-center">
+                      <Database className="w-4 h-4" />
+                      <span className="text-xs font-extrabold uppercase tracking-wider">Multimodal Inputs</span>
+                    </div>
                   </div>
-                  <p className="text-white/90 text-base leading-relaxed font-normal">
-                    Tabular Clinical EHR + Retinal Fundus microvascular imagery.
-                  </p>
+                  
+                  {/* Schematic Flow */}
+                  <div className="flex items-center justify-between gap-2">
+                    {/* EHR block */}
+                    <div className="flex-1 p-2 rounded bg-black/60 border border-white/10 flex flex-col gap-1">
+                      <span className="text-[10px] text-white/50 uppercase font-mono font-bold">EHR Features</span>
+                      <div className="flex flex-wrap gap-1">
+                        <span className="text-[9px] px-1 bg-cyan-950/40 text-cyan-300 border border-cyan-500/20 rounded">BP</span>
+                        <span className="text-[9px] px-1 bg-cyan-950/40 text-cyan-300 border border-cyan-500/20 rounded">HbA1c</span>
+                        <span className="text-[9px] px-1 bg-cyan-950/40 text-cyan-300 border border-cyan-500/20 rounded">Age</span>
+                      </div>
+                    </div>
+
+                    {/* Plus connector */}
+                    <span className="text-cyan-400 font-extrabold text-sm font-mono">+</span>
+
+                    {/* Retina Block */}
+                    <div className="p-2 rounded bg-black/60 border border-white/10 flex flex-col items-center gap-1">
+                      <span className="text-[10px] text-white/50 uppercase font-mono font-bold">Retina Image</span>
+                      <div className="relative w-9 h-9 border border-cyan-500/30 rounded-full bg-cyan-950/20 flex items-center justify-center overflow-hidden">
+                        <svg className="w-6 h-6 stroke-cyan-400/80 stroke-[0.75] fill-none" viewBox="0 0 24 24">
+                          <circle cx="12" cy="12" r="10" strokeDasharray="2 2" className="animate-[spin_20s_linear_infinite]" />
+                          <path d="M12 12 Q 15 8 18 10 M12 12 Q 8 15 6 12 M12 12 Q 10 6 12 4" />
+                        </svg>
+                        <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-cyan-400/50 animate-[bounce_1.5s_infinite]" />
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
-                {/* Late Fusion Engine */}
+                {/* 2. Late Fusion Engine Block */}
                 <div className="p-4 rounded-xl border border-white/5 bg-white/[0.01] hover:border-cyan-500/30 transition-all duration-300">
-                  <div className="flex items-center gap-2 mb-2 text-cyan-400">
-                    <Cpu className="w-4.5 h-4.5" />
-                    <span className="text-sm font-bold uppercase tracking-wider">Late Fusion Engine</span>
+                  <div className="flex items-center justify-center gap-1.5 mb-3 text-cyan-400">
+                    <Cpu className="w-4 h-4" />
+                    <span className="text-xs font-extrabold uppercase tracking-wider">Late Fusion MLP</span>
                   </div>
-                  <p className="text-white/90 text-base leading-relaxed font-normal">
-                    EfficientNet-B3 Backbone & Multi-Layer Perceptron (MLP) concatenation with calibrated 0.90 threshold.
-                  </p>
+                  
+                  {/* Visual Slider indicator */}
+                  <div className="flex flex-col gap-1.5">
+                    <div className="flex justify-between text-xs font-mono text-white/80">
+                      <span>Fusion Threshold</span>
+                      <span className="text-cyan-400 font-bold">0.90 Target</span>
+                    </div>
+                    <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden relative">
+                      <div className="h-full bg-cyan-400 rounded-full" style={{ width: "90%" }} />
+                      <div className="absolute top-0 bottom-0 w-0.5 bg-white left-[90%]" />
+                    </div>
+                  </div>
                 </div>
 
-                {/* Local Personalization */}
+                {/* 3. Neural Layer Stack */}
                 <div className="p-4 rounded-xl border border-cyan-500/10 bg-cyan-950/5 hover:border-cyan-500/30 transition-all duration-300">
-                  <div className="flex items-center gap-2 mb-2 text-cyan-400">
-                    <Sliders className="w-4.5 h-4.5" />
-                    <span className="text-sm font-bold uppercase tracking-wider">Adaptive Fine-Tuning</span>
+                  <div className="flex items-center justify-center gap-1.5 mb-3 text-cyan-400">
+                    <Layers className="w-4 h-4" />
+                    <span className="text-xs font-extrabold uppercase tracking-wider">Personalized Layer Stack</span>
                   </div>
-                  <p className="text-white/90 text-base leading-relaxed font-normal">
-                    Bottom model layers are frozen while task heads undergo personalization for Hypertension & Heart Failure (+30.14% rel. accuracy).
-                  </p>
+
+                  {/* Layers drawing */}
+                  <div className="flex flex-col gap-1 text-[10px] font-mono">
+                    <div className="py-1 px-2.5 rounded bg-cyan-400/10 border border-cyan-400 text-cyan-400 flex items-center justify-between font-bold animate-[pulse_3s_infinite]">
+                      <span>Task Heads (HF & HT)</span>
+                      <span className="uppercase text-[8px] bg-cyan-500 text-black px-1 rounded font-black">Fine-Tuned</span>
+                    </div>
+                    <div className="py-1 px-2.5 rounded bg-cyan-400/5 border border-cyan-400/40 text-cyan-300 flex items-center justify-between">
+                      <span>Top Adaptation Layers</span>
+                      <span className="uppercase text-[8px] border border-cyan-400/50 px-1 rounded">Fine-Tuned</span>
+                    </div>
+                    <div className="py-1 px-2.5 rounded bg-white/5 border border-white/10 text-white/40 flex items-center justify-between">
+                      <span>Bottom Shared Base</span>
+                      <span className="flex items-center gap-1 text-[8px] uppercase">
+                        <Lock className="w-2.5 h-2.5" /> Frozen
+                      </span>
+                    </div>
+                  </div>
+                  <div className="mt-2 text-[10px] text-cyan-300/80 font-mono text-center">
+                    Accuracy Boost: +30.1% rel.
+                  </div>
                 </div>
 
-                {/* Local Dual XAI */}
+                {/* 4. Dual XAI Audits Visual */}
                 <div className="p-4 rounded-xl border border-white/5 bg-white/[0.01] hover:border-cyan-500/30 transition-all duration-300">
-                  <div className="flex items-center gap-2 mb-2 text-cyan-400">
-                    <Activity className="w-4.5 h-4.5" />
-                    <span className="text-sm font-bold uppercase tracking-wider">Local Dual XAI Audits</span>
+                  <div className="flex items-center justify-center gap-1.5 mb-3 text-cyan-400">
+                    <Activity className="w-4 h-4" />
+                    <span className="text-xs font-extrabold uppercase tracking-wider">Local Dual XAI Audits</span>
                   </div>
-                  <p className="text-white/90 text-base leading-relaxed font-normal">
-                    Validates local predictions via SHAP feature attributions and Grad-CAM retinal heatmaps.
-                  </p>
+
+                  <div className="grid grid-cols-2 gap-3">
+                    {/* SHAP attributions */}
+                    <div className="p-2 rounded bg-black/40 border border-white/5 flex flex-col gap-1.5">
+                      <span className="text-[9px] text-white/50 uppercase font-mono font-bold">SHAP Weights</span>
+                      <div className="flex flex-col gap-1 font-mono text-[8px]">
+                        <div className="flex justify-between">
+                          <span className="text-white/60">BP</span>
+                          <span className="text-cyan-400">0.42</span>
+                        </div>
+                        <div className="h-1 bg-cyan-400/40 rounded-full overflow-hidden">
+                          <div className="h-full bg-cyan-400" style={{ width: "85%" }} />
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-white/60">HbA1c</span>
+                          <span className="text-cyan-400">0.35</span>
+                        </div>
+                        <div className="h-1 bg-cyan-400/40 rounded-full overflow-hidden">
+                          <div className="h-full bg-cyan-400" style={{ width: "70%" }} />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Grad-CAM Activations Grid */}
+                    <div className="p-2 rounded bg-black/40 border border-white/5 flex flex-col items-center justify-between">
+                      <span className="text-[9px] text-white/50 uppercase font-mono font-bold w-full text-left">Grad-CAM Heat</span>
+                      <div className="grid grid-cols-3 gap-0.5 mt-1 bg-black p-0.5 rounded border border-white/5">
+                        <div className="w-2.5 h-2.5 bg-cyan-950/40 rounded-[1px]" />
+                        <div className="w-2.5 h-2.5 bg-rose-500/60 rounded-[1px] animate-pulse" />
+                        <div className="w-2.5 h-2.5 bg-cyan-950/40 rounded-[1px]" />
+                        <div className="w-2.5 h-2.5 bg-cyan-950/40 rounded-[1px]" />
+                        <div className="w-2.5 h-2.5 bg-rose-500 rounded-[1px] animate-pulse" />
+                        <div className="w-2.5 h-2.5 bg-rose-500/60 rounded-[1px]" />
+                        <div className="w-2.5 h-2.5 bg-cyan-950/40 rounded-[1px]" />
+                        <div className="w-2.5 h-2.5 bg-cyan-950/40 rounded-[1px]" />
+                        <div className="w-2.5 h-2.5 bg-cyan-950/40 rounded-[1px]" />
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
               </div>
@@ -218,51 +360,101 @@ export function SystemArchitecture() {
               <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-transparent via-emerald-400 to-transparent opacity-80" />
               
               {/* Zone Tag */}
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-950/20 text-sm font-black uppercase tracking-widest text-emerald-400 w-fit mb-6">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-emerald-500/30 bg-emerald-950/20 text-[10px] font-bold uppercase tracking-widest text-emerald-400/90 w-fit mx-auto mb-4">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                 Zone 2: Privacy Shield
               </div>
 
-              <h3 className="text-white font-extrabold text-xl md:text-2xl tracking-tight leading-snug mb-3">
+              <h3 className="text-white/90 font-extrabold text-lg md:text-xl tracking-tight leading-snug mb-0.5 text-center">
                 DP Communication Bridge
               </h3>
-              
-              <p className="text-white/80 text-base leading-relaxed mb-6 font-normal">
-                Gradients pass through a local differential privacy bridge to guarantee compliance and sanitize patient identifiers.
-              </p>
+              <p className="text-white/45 text-[10px] font-mono mb-4 uppercase tracking-wider text-center">Sanitize local parameters</p>
 
-              <div className="flex flex-col gap-4 mt-auto">
+              <div className="flex flex-col gap-6 mt-auto">
                 
-                {/* Shield Pulse Box */}
-                <div className="flex flex-col items-center justify-center p-6 border border-emerald-500/20 bg-emerald-500/5 rounded-2xl relative overflow-hidden group-hover:border-emerald-400 transition-colors">
-                  <div className="absolute inset-0 bg-emerald-500/5 animate-pulse" />
-                  <Lock className="w-10 h-10 text-emerald-400 mb-2 relative z-10 animate-glow-pulse" />
-                  <span className="text-white font-black text-base text-center relative z-10">Opacus DP-SGD Active</span>
-                </div>
-
-                {/* Privacy Configuration Grid */}
+                {/* 1. Animated Wave SVG */}
                 <div className="p-4 rounded-xl border border-white/5 bg-white/[0.01] hover:border-emerald-500/30 transition-all duration-300">
-                  <span className="text-sm font-bold uppercase tracking-wider text-emerald-400 block mb-2">Noise Injector Parameters</span>
+                  <div className="flex items-center justify-center mb-3 text-emerald-400 border-b border-white/5 pb-2 mb-3">
+                    <div className="flex items-center gap-1.5 justify-center">
+                      <LockKeyhole className="w-4 h-4" />
+                      <span className="text-xs font-extrabold uppercase tracking-wider">DP Signal Sanitizer</span>
+                    </div>
+                  </div>
                   
-                  <div className="flex flex-col gap-1.5 font-mono text-sm text-emerald-300">
-                    <div className="flex justify-between border-b border-white/5 pb-1">
-                      <span>Clip Threshold (C)</span>
-                      <span>1.0</span>
-                    </div>
-                    <div className="flex justify-between border-b border-white/5 pb-1">
-                      <span>DP Engine</span>
-                      <span>Opacus Core</span>
-                    </div>
-                    <div className="flex justify-between pb-1">
-                      <span>Target Budget</span>
-                      <span>$\epsilon$-DP (Strict)</span>
+                  {/* SVG Signal flow */}
+                  <div className="relative flex flex-col gap-1 items-center justify-center">
+                    <svg className="w-full h-16 bg-black/60 rounded border border-white/5 p-1" viewBox="0 0 200 60">
+                      {/* Smooth left wave */}
+                      <path d="M 5 30 Q 25 10 45 30 T 85 30" fill="none" stroke="#10b981" strokeWidth="1.5" className="opacity-40" />
+                      {/* Filter Gate */}
+                      <line x1="95" y1="5" x2="95" y2="55" stroke="#10b981" strokeWidth="1.5" strokeDasharray="3 3" className="animate-pulse" />
+                      {/* Lock symbol */}
+                      <g transform="translate(85, 20)">
+                        <rect x="2.5" y="2.5" width="15" height="15" rx="3" fill="#022c22" stroke="#10b981" strokeWidth="1.5" />
+                        <path d="M 6 5 L 6 2.5 C 6 0, 14 0, 14 2.5 L 14 5" fill="none" stroke="#10b981" strokeWidth="1.5" />
+                      </g>
+                      {/* Noisy output wave */}
+                      <path d="M 105 30 L 110 25 L 115 35 L 120 20 L 125 40 L 130 25 L 135 35 L 140 15 L 145 45 L 150 30 L 155 35 L 160 20 L 165 40 L 170 25 L 175 35 L 180 30 L 195 30" fill="none" stroke="#34d399" strokeWidth="1.5" className="drop-shadow-[0_0_4px_rgba(52,211,153,0.4)]" />
+                    </svg>
+                    <div className="flex justify-between w-full text-[9px] font-mono text-emerald-400 px-1 mt-1">
+                      <span>Raw Updates</span>
+                      <span>Opacus DP-SGD Guard</span>
+                      <span>Noisy Updates</span>
                     </div>
                   </div>
                 </div>
 
-                <div className="p-4 rounded-xl border border-emerald-500/10 bg-emerald-950/5">
-                  <p className="text-white/90 text-base leading-relaxed font-normal">
-                    Local updates are dynamically clipped and injected with calibrated Gaussian noise matching security budgets before upload.
+                {/* 2. Parameters Instrument Panel */}
+                <div className="p-4 rounded-xl border border-white/5 bg-white/[0.01] hover:border-emerald-500/30 transition-all duration-300">
+                  <div className="flex items-center justify-center gap-1.5 mb-3 text-emerald-400">
+                    <Sliders className="w-4 h-4" />
+                    <span className="text-xs font-extrabold uppercase tracking-wider">Noise Injector Parameters</span>
+                  </div>
+                  
+                  <div className="flex flex-col gap-3 font-mono text-[10px]">
+                    {/* Noise Multiplier (Sigma) */}
+                    <div className="flex flex-col gap-1">
+                      <div className="flex justify-between text-emerald-300">
+                        <span>Noise Multiplier ($\sigma$)</span>
+                        <span>0.8</span>
+                      </div>
+                      <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+                        <div className="h-full bg-emerald-500 rounded-full" style={{ width: "80%" }} />
+                      </div>
+                    </div>
+                    
+                    {/* Clip Threshold */}
+                    <div className="flex flex-col gap-1">
+                      <div className="flex justify-between text-emerald-300">
+                        <span>Clip Threshold ($C$)</span>
+                        <span>1.0</span>
+                      </div>
+                      <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+                        <div className="h-full bg-emerald-500 rounded-full" style={{ width: "100%" }} />
+                      </div>
+                    </div>
+
+                    {/* Privacy Budget Epsilon */}
+                    <div className="flex flex-col gap-1">
+                      <div className="flex justify-between text-emerald-300">
+                        <span>Privacy Budget ($\epsilon$)</span>
+                        <span>4.2 (Strict)</span>
+                      </div>
+                      <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+                        <div className="h-full bg-emerald-500 rounded-full" style={{ width: "42%" }} />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* 3. Security Status Box */}
+                <div className="p-4 rounded-xl border border-emerald-500/10 bg-emerald-950/5 flex flex-col items-center justify-center gap-2">
+                  <div className="flex items-center gap-2 text-emerald-400 font-mono text-xs font-bold animate-[pulse_2s_infinite]">
+                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block shadow-[0_0_8px_#10b981]" />
+                    STATUS: ENCRYPTED & SECURE
+                  </div>
+                  <p className="text-[10px] font-mono text-white/50 text-center">
+                    Mathematical Differential Privacy Bounds Guarantee Zero Patient Exposure.
                   </p>
                 </div>
 
@@ -297,51 +489,94 @@ export function SystemArchitecture() {
               <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-transparent via-purple-400 to-transparent opacity-80" />
               
               {/* Zone Tag */}
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-purple-500/30 bg-purple-950/20 text-sm font-black uppercase tracking-widest text-purple-400 w-fit mb-6">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-purple-500/30 bg-purple-950/20 text-[10px] font-bold uppercase tracking-widest text-purple-400/90 w-fit mx-auto mb-4">
                 <span className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse" />
                 Zone 3: Central Server
               </div>
 
-              <h3 className="text-white font-extrabold text-xl md:text-2xl tracking-tight leading-snug mb-3">
+              <h3 className="text-white/90 font-extrabold text-lg md:text-xl tracking-tight leading-snug mb-0.5 text-center">
                 Aggregation & Fairness
               </h3>
-              
-              <p className="text-white/80 text-base leading-relaxed mb-6 font-normal">
-                Gradients undergo distribution audits before aggregation inside the fairness-optimized parameter engine.
-              </p>
+              <p className="text-white/45 text-[10px] font-mono mb-4 uppercase tracking-wider text-center">Demographic Gap Correction</p>
 
-              <div className="flex flex-col gap-4 mt-auto">
+              <div className="flex flex-col gap-6 mt-auto">
                 
-                {/* 6-Metric Non-IID Box */}
+                {/* 1. Pre-Aggregation Non-IID Map */}
                 <div className="p-4 rounded-xl border border-white/5 bg-white/[0.01] hover:border-purple-500/30 transition-all duration-300">
-                  <div className="flex items-center gap-2 mb-2 text-purple-400">
-                    <Network className="w-4.5 h-4.5" />
-                    <span className="text-sm font-bold uppercase tracking-wider">Non-IID Pre-Filter</span>
+                  <div className="flex items-center justify-center text-purple-400 border-b border-white/5 pb-2 mb-3">
+                    <div className="flex items-center gap-1.5 justify-center">
+                      <Network className="w-4 h-4" />
+                      <span className="text-xs font-extrabold uppercase tracking-wider">Pre-Aggregation Audits</span>
+                    </div>
                   </div>
-                  <p className="text-white/90 text-base leading-relaxed font-normal mb-2">
-                    Evaluates update divergences across 6 strict metrics to detect covariate gaps.
-                  </p>
-                  <div className="flex flex-wrap gap-2 mt-1.5 text-xs text-purple-300 font-mono">
-                    <span className="px-1.5 py-0.5 rounded bg-purple-950/30 border border-purple-500/10">Label Skew</span>
-                    <span className="px-1.5 py-0.5 rounded bg-purple-950/30 border border-purple-500/10">Covariate Shift</span>
+
+                  {/* Satellite Diagram */}
+                  <div className="flex items-center justify-center p-2 rounded bg-black/50 border border-white/5 relative h-20 overflow-hidden">
+                    {/* Satellite Nodes */}
+                    <div className="absolute top-2 left-3 w-2.5 h-2.5 rounded-full bg-cyan-400/60 shadow-[0_0_4px_cyan]" />
+                    <div className="absolute top-8 left-2 w-2.5 h-2.5 rounded-full bg-cyan-400/60 shadow-[0_0_4px_cyan]" />
+                    <div className="absolute bottom-2 left-4 w-2.5 h-2.5 rounded-full bg-cyan-400/60 shadow-[0_0_4px_cyan]" />
+                    
+                    <div className="absolute top-2 right-3 w-2.5 h-2.5 rounded-full bg-cyan-400/60 shadow-[0_0_4px_cyan]" />
+                    <div className="absolute top-8 right-2 w-2.5 h-2.5 rounded-full bg-cyan-400/60 shadow-[0_0_4px_cyan]" />
+                    <div className="absolute bottom-2 right-4 w-2.5 h-2.5 rounded-full bg-cyan-400/60 shadow-[0_0_4px_cyan]" />
+                    
+                    {/* Connecting wires */}
+                    <svg className="absolute inset-0 w-full h-full stroke-purple-400/30 stroke-[0.75] stroke-dasharray-[2_2] fill-none" viewBox="0 0 100 50" preserveAspectRatio="none">
+                      <path d="M 10 10 L 50 25 M 5 25 L 50 25 M 12 40 L 50 25 M 90 10 L 50 25 M 95 25 L 50 25 M 88 40 L 50 25" />
+                    </svg>
+
+                    {/* Central Aggregation Server */}
+                    <div className="relative w-8 h-8 rounded-full bg-purple-950/60 border border-purple-500 flex items-center justify-center shadow-[0_0_12px_rgba(168,85,247,0.4)] animate-pulse">
+                      <Server className="w-4 h-4 text-purple-400" />
+                    </div>
+                  </div>
+                  <div className="flex justify-between text-[9px] font-mono text-purple-300 mt-2 px-1">
+                    <span>Label Skew: Calibrated</span>
+                    <span>Covariate Shift: Managed</span>
                   </div>
                 </div>
 
-                {/* Fairness FedAvg */}
-                <div className="p-4 rounded-xl border border-purple-500/10 bg-purple-950/5 hover:border-purple-500/30 transition-all duration-300">
-                  <div className="flex items-center gap-2 mb-2 text-purple-400">
-                    <Scale className="w-4.5 h-4.5" />
-                    <span className="text-sm font-bold uppercase tracking-wider">Demographic Fairness</span>
+                {/* 2. Fairness Impact Chart */}
+                <div className="p-4 rounded-xl border border-white/5 bg-white/[0.01] hover:border-purple-500/30 transition-all duration-300">
+                  <div className="flex items-center justify-center gap-1.5 mb-3 text-purple-400">
+                    <Scale className="w-4 h-4" />
+                    <span className="text-xs font-extrabold uppercase tracking-wider">Demographic Parity Gap</span>
                   </div>
-                  <p className="text-white/90 text-base leading-relaxed font-normal">
-                    Weights parameter aggregation to minimize Demographic Parity recall gaps (shrinking Gender Recall Gap from 8.2% to 2.1%).
-                  </p>
+                  
+                  {/* Visual Bar chart comparing disparity gap */}
+                  <div className="flex flex-col gap-3 font-mono text-[10px]">
+                    <span className="text-[9px] text-white/50 uppercase">Recall Disparity Gap (Lower = Fairer)</span>
+                    
+                    {/* Standard FedAvg */}
+                    <div className="flex items-center gap-2">
+                      <span className="w-20 text-white/70">Std FedAvg</span>
+                      <div className="flex-1 h-3 bg-white/5 rounded overflow-hidden relative">
+                        <div className="h-full bg-rose-500/60" style={{ width: "82%" }} />
+                        <span className="absolute inset-y-0 right-2 flex items-center text-[8px] text-white font-extrabold">8.2%</span>
+                      </div>
+                    </div>
+
+                    {/* Fairness-Aware FedAvg */}
+                    <div className="flex items-center gap-2">
+                      <span className="w-20 text-purple-400 font-bold">Fair FedAvg</span>
+                      <div className="flex-1 h-3 bg-white/5 rounded overflow-hidden relative">
+                        <div className="h-full bg-purple-500 shadow-[0_0_8px_#a855f7]" style={{ width: "21%" }} />
+                        <span className="absolute inset-y-0 right-2 flex items-center text-[8px] text-purple-200 font-extrabold">2.1%</span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Improvement Tag */}
+                  <div className="mt-3 flex items-center justify-center gap-1 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[10px] font-mono py-1 rounded">
+                    <span className="text-emerald-500 font-bold">↓ 74.4% Bias Gap Reduction</span>
+                  </div>
                 </div>
 
-                {/* Aggregation Badge */}
-                <div className="flex gap-2.5 items-center text-sm text-emerald-400 font-bold bg-emerald-500/10 px-3 py-2 rounded-xl border border-emerald-500/20 w-fit mx-auto">
+                {/* 3. Verification Badge */}
+                <div className="flex gap-2.5 items-center text-xs text-emerald-400 font-bold bg-emerald-500/10 px-3 py-2.5 rounded-xl border border-emerald-500/20 justify-center">
                   <ShieldCheck className="w-4 h-4 flex-shrink-0" />
-                  <span>Demographic Gaps Redressed</span>
+                  <span className="uppercase tracking-wider font-mono">Demographic Gaps Redressed</span>
                 </div>
 
               </div>
@@ -375,71 +610,156 @@ export function SystemArchitecture() {
               <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-transparent via-rose-400 to-transparent opacity-80" />
               
               {/* Zone Tag */}
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-rose-500/30 bg-rose-950/20 text-sm font-black uppercase tracking-widest text-rose-400 w-fit mb-6">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-rose-500/30 bg-rose-950/20 text-[10px] font-bold uppercase tracking-widest text-rose-400/90 w-fit mx-auto mb-4">
                 <span className="w-1.5 h-1.5 rounded-full bg-rose-400 animate-pulse" />
                 Zone 4: Final Output
               </div>
 
-              <h3 className="text-white font-extrabold text-xl md:text-2xl tracking-tight leading-snug mb-3">
+              <h3 className="text-white/90 font-extrabold text-lg md:text-xl tracking-tight leading-snug mb-0.5 text-center">
                 Sequential Risk Cascade
               </h3>
-              
-              <p className="text-white/80 text-base leading-relaxed mb-6 font-normal">
-                Server weights parameterize a sequential fuzzy dependency bridge mapping risk complications chronologically.
-              </p>
+              <p className="text-white/45 text-[10px] font-mono mb-4 uppercase tracking-wider text-center">Fuzzy Complication Mapping</p>
 
-              <div className="flex flex-col gap-4 mt-auto">
+              <div className="flex flex-col gap-6 mt-auto">
                 
-                {/* Complication Flow Cascade */}
-                <div className="p-4 rounded-xl border border-white/5 bg-white/[0.01]">
-                  <span className="text-sm font-bold uppercase tracking-wider text-rose-400 block mb-3">Fuzzy Chain Model</span>
-                  
+                {/* 1. Complication Flow Cascade & Simulation */}
+                <div className="p-4 rounded-xl border border-white/5 bg-white/[0.01] hover:border-rose-500/30 transition-all duration-300">
+                  <div className="flex items-center justify-center text-rose-400 border-b border-white/5 pb-2 mb-3">
+                    <div className="flex items-center gap-1.5 justify-center">
+                      <GitBranch className="w-4 h-4" />
+                      <span className="text-xs font-extrabold uppercase tracking-wider">Interactive Complications Chain</span>
+                    </div>
+                  </div>
+
+                  {/* Chain Steps */}
                   <div className="flex flex-col gap-2 relative">
                     
                     {/* Stage 1 */}
-                    <div className="flex items-center justify-between p-2 rounded bg-black/40 border border-rose-500/10">
-                      <span className="text-xs text-white/40 uppercase font-mono">Stage 1</span>
-                      <span className="text-sm font-bold text-white">Diabetes Status</span>
-                      <span className="text-xs text-cyan-400 font-mono">Target Input</span>
+                    <div className={`flex items-center justify-between p-2 rounded border font-mono text-[10px] transition-all duration-500 ${
+                      cascadeStep >= 1 ? "bg-cyan-950/40 border-cyan-500/50 text-cyan-300" : "bg-black/40 border-white/5 text-white/30"
+                    }`}>
+                      <span className="uppercase text-[8px] font-bold">Stage 1</span>
+                      <span className="font-extrabold text-[11px]">Diabetes Status</span>
+                      <span>{cascadeStep >= 1 ? "HbA1c > 6.5%" : "Pending"}</span>
                     </div>
                     
                     {/* Arrow down */}
                     <div className="flex justify-center -my-1">
-                      <ChevronDown className="w-3.5 h-3.5 text-rose-400/40" />
+                      <ChevronDown className={`w-3.5 h-3.5 transition-colors duration-500 ${cascadeStep >= 2 ? "text-cyan-400" : "text-white/10"}`} />
                     </div>
 
                     {/* Stage 2 */}
-                    <div className="flex items-center justify-between p-2 rounded bg-black/40 border border-rose-500/10">
-                      <span className="text-xs text-white/40 uppercase font-mono">Stage 2</span>
-                      <span className="text-sm font-bold text-white">Nephropathy Stage</span>
-                      <span className="text-xs text-rose-400 font-mono">Prediction</span>
+                    <div className={`flex items-center justify-between p-2 rounded border font-mono text-[10px] transition-all duration-500 ${
+                      cascadeStep >= 2 ? "bg-orange-950/40 border-orange-500/50 text-orange-300" : "bg-black/40 border-white/5 text-white/30"
+                    }`}>
+                      <span className="uppercase text-[8px] font-bold">Stage 2</span>
+                      <span className="font-extrabold text-[11px]">Nephropathy (Stage 1)</span>
+                      <span>{cascadeStep >= 2 ? "88% Conf." : "Pending"}</span>
                     </div>
 
                     {/* Arrow down */}
                     <div className="flex justify-center -my-1">
-                      <ChevronDown className="w-3.5 h-3.5 text-rose-400/40" />
+                      <ChevronDown className={`w-3.5 h-3.5 transition-colors duration-500 ${cascadeStep >= 3 ? "text-orange-400" : "text-white/10"}`} />
                     </div>
 
                     {/* Stage 3 */}
-                    <div className="flex items-center justify-between p-2 rounded bg-rose-500/10 border border-rose-500/20 shadow-[0_0_10px_rgba(244,63,94,0.1)]">
-                      <span className="text-xs text-rose-300 uppercase font-mono">Stage 3</span>
-                      <span className="text-sm font-bold text-rose-400">Cardiovascular Risk</span>
-                      <span className="text-xs text-emerald-400 font-mono font-bold">AUC 0.9452</span>
+                    <div className={`flex items-center justify-between p-2 rounded border font-mono text-[10px] transition-all duration-500 ${
+                      cascadeStep >= 3 ? "bg-rose-950/60 border-rose-500/70 text-rose-300 shadow-[0_0_10px_rgba(244,63,94,0.2)]" : "bg-black/40 border-white/5 text-white/30"
+                    }`}>
+                      <span className="uppercase text-[8px] font-bold">Stage 3</span>
+                      <span className="font-extrabold text-[11px]">CVD Complication Risk</span>
+                      <span>{cascadeStep >= 3 ? "94.5% Risk" : "Pending"}</span>
                     </div>
 
                   </div>
+
+                  {/* Simulator Control Trigger */}
+                  <div className="mt-4 flex gap-2">
+                    <button
+                      onClick={startSimulation}
+                      disabled={isSimulating}
+                      className={`flex-1 flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg text-xs font-black uppercase cursor-pointer transition-all border ${
+                        isSimulating 
+                          ? "bg-rose-950/20 border-rose-500/20 text-rose-400/40" 
+                          : "bg-rose-500 border-rose-400 text-black hover:bg-rose-400 shadow-[0_0_12px_rgba(244,63,94,0.3)] active:scale-95"
+                      }`}
+                    >
+                      <Play className="w-3.5 h-3.5 fill-black stroke-none" />
+                      {isSimulating ? "Cascading..." : cascadeStep > 0 ? "Re-Run Cascade" : "Run Cascade"}
+                    </button>
+                    {cascadeStep > 0 && (
+                      <button
+                        onClick={resetSimulation}
+                        className="p-2 rounded-lg border border-white/10 bg-black/40 hover:bg-white/5 text-white/60 hover:text-white cursor-pointer"
+                        title="Reset Simulation"
+                      >
+                        <RotateCcw className="w-3.5 h-3.5" />
+                      </button>
+                    )}
+                  </div>
                 </div>
 
+                {/* 2. CVD Complication Risk Dial Gauge */}
+                <div className="p-4 rounded-xl border border-white/5 bg-white/[0.01] hover:border-rose-500/30 transition-all duration-300">
+                  <div className="flex items-center justify-center gap-1.5 mb-4 text-rose-400">
+                    <Activity className="w-4 h-4" />
+                    <span className="text-xs font-extrabold uppercase tracking-wider">CVD Risk probability meter</span>
+                  </div>
+
+                  {/* Radial Dial Indicator */}
+                  <div className="relative flex flex-col items-center justify-center">
+                    <svg className="w-32 h-32 transform -rotate-90 overflow-visible" viewBox="0 0 80 80">
+                      {/* Gray base circle */}
+                      <circle cx="40" cy="40" r="32" fill="none" stroke="#ffffff10" strokeWidth="6" />
+                      {/* Colored progression arc */}
+                      <circle 
+                        cx="40" 
+                        cy="40" 
+                        r="32" 
+                        fill="none" 
+                        stroke="url(#roseGradient)" 
+                        strokeWidth="6" 
+                        strokeLinecap="round"
+                        strokeDasharray="201" 
+                        strokeDashoffset={201 - (201 * simulatedRisk) / 100}
+                        className="transition-all duration-300"
+                      />
+                      {/* Gradient definition */}
+                      <defs>
+                        <linearGradient id="roseGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                          <stop offset="0%" stopColor="#ec4899" />
+                          <stop offset="100%" stopColor="#f43f5e" />
+                        </linearGradient>
+                      </defs>
+                    </svg>
+
+                    {/* Numeric overlay in center */}
+                    <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
+                      <span className="text-2xl font-black text-white font-mono tracking-tighter drop-shadow-[0_0_10px_rgba(244,63,94,0.4)]">
+                        {simulatedRisk}%
+                      </span>
+                      <span className="text-[9px] uppercase tracking-wider text-rose-400 font-bold font-mono">CVD Risk</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* 3. Fuzzy Logic Diagram */}
                 <div className="p-4 rounded-xl border border-rose-500/10 bg-rose-950/5">
-                  <p className="text-white/90 text-lg leading-relaxed font-normal">
-                    Uses fuzzy logic mapping to manage clinical boundary uncertainty, projecting Stage 1 Nephropathy directly onto CVD risk likelihoods.
-                  </p>
-                </div>
-
-                <div className="mt-6 flex gap-2 items-center justify-center font-mono text-base text-rose-400 bg-rose-500/5 px-4 py-2 rounded-lg border border-rose-500/10">
-                  <span>Fuzzy Clinical Boundary Mapping Enabled</span>
-                  <span>&bull;</span>
-                  <span>Exploits Nephropathy stage to maximize CVD predictability</span>
+                  <span className="text-[9px] font-mono text-rose-400 block mb-2 uppercase font-extrabold text-center">Fuzzy Logic Boundary Map</span>
+                  
+                  <div className="flex items-center justify-between gap-2">
+                    <svg className="w-24 h-8 stroke-rose-400 stroke-1 fill-none opacity-80" viewBox="0 0 100 30">
+                      {/* Left Curve */}
+                      <path d="M 5 25 L 30 5 L 60 25" stroke="#ec4899" strokeWidth="1.5" />
+                      {/* Right Curve */}
+                      <path d="M 40 25 L 70 5 L 95 25" stroke="#38bdf8" strokeWidth="1.5" />
+                      {/* Intersecting region fill pattern */}
+                      <path d="M 40 25 L 50 13 L 60 25 Z" fill="rgba(244,63,94,0.15)" stroke="none" />
+                    </svg>
+                    <span className="text-[9px] font-mono text-white/50 leading-tight">
+                      Maps Kidney damage indices directly into heart failure risks under clinical noise boundaries.
+                    </span>
+                  </div>
                 </div>
 
               </div>
@@ -456,7 +776,7 @@ export function SystemArchitecture() {
           transition={{ delay: 0.3 }}
           className="mt-16 text-center"
         >
-          <div className="inline-flex flex-wrap items-center justify-center gap-6 rounded-2xl border border-white/5 bg-white/[0.01] px-8 py-4 text-white/50 text-sm md:text-base">
+          <div className="inline-flex flex-wrap items-center justify-center gap-6 rounded-xl border border-white/5 bg-white/[0.01] px-6 py-3 text-white/50 text-xs md:text-sm">
             <span className="flex items-center gap-1.5 text-cyan-400 font-semibold">
               <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
               Cyan: Local Multimodal Processing

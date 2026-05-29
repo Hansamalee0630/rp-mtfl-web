@@ -4,13 +4,59 @@ import { motion } from "framer-motion"
 import { Send, MessageSquare, Mail, MapPin } from "lucide-react"
 import { toast } from "sonner"
 
+import { useState } from "react"
+
 export function ContactSection() {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    e.currentTarget.reset()
-    toast.success("Message Sent Successfully!", {
-      description: "Thank you for reaching out. We will get back to you shortly.",
-    })
+    
+    if (isSubmitting) return
+
+    const form = e.currentTarget
+    const formData = new FormData(form)
+    const name = formData.get("name")?.toString().trim()
+    const email = formData.get("email")?.toString().trim()
+    const subject = formData.get("subject")?.toString().trim()
+    const message = formData.get("message")?.toString().trim()
+
+    if (!name || !email || !subject || !message) {
+      toast.error("Please fill up the form", {
+        description: "All fields are required to submit the inquiry.",
+      })
+      return
+    }
+
+    setIsSubmitting(true)
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, email, subject, message }),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok || data.error) {
+        throw new Error(data.error || "Failed to deliver message.")
+      }
+
+      form.reset()
+      toast.success("Message Sent Successfully!", {
+        description: "Thank you for reaching out. We will get back to you shortly.",
+      })
+    } catch (error: any) {
+      console.error(error)
+      toast.error("Failed to send message", {
+        description: error.message || "Please check your network connection and try again.",
+      })
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -58,6 +104,7 @@ export function ContactSection() {
                   <input
                     type="text"
                     id="name"
+                    name="name"
                     placeholder="John Doe"
                     className="w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3 text-white placeholder:text-white/20 focus:outline-none focus:ring-2 focus:ring-cyan-400/50 focus:border-transparent transition-all"
                   />
@@ -67,6 +114,7 @@ export function ContactSection() {
                   <input
                     type="email"
                     id="email"
+                    name="email"
                     placeholder="name@example.com"
                     className="w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3 text-white placeholder:text-white/20 focus:outline-none focus:ring-2 focus:ring-cyan-400/50 focus:border-transparent transition-all"
                   />
@@ -78,6 +126,7 @@ export function ContactSection() {
                 <input
                   type="text"
                   id="subject"
+                  name="subject"
                   placeholder="Inquiry about MTFL Research"
                   className="w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3 text-white placeholder:text-white/20 focus:outline-none focus:ring-2 focus:ring-cyan-400/50 focus:border-transparent transition-all"
                 />
@@ -87,6 +136,7 @@ export function ContactSection() {
                 <label htmlFor="message" className="block text-sm font-medium text-white/70 mb-2">Message or Query</label>
                 <textarea
                   id="message"
+                  name="message"
                   rows={5}
                   placeholder="How can we help you?"
                   className="w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3 text-white placeholder:text-white/20 focus:outline-none focus:ring-2 focus:ring-cyan-400/50 focus:border-transparent transition-all resize-y"
@@ -95,9 +145,15 @@ export function ContactSection() {
 
               <button
                 type="submit"
-                className="w-full rounded-xl bg-cyan-400 hover:bg-cyan-300 text-black font-bold py-3.5 px-4 transition-all duration-300 shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:shadow-[0_0_30px_rgba(6,182,212,0.5)] flex items-center justify-center gap-2"
+                disabled={isSubmitting}
+                className={`w-full rounded-xl font-bold py-3.5 px-4 transition-all duration-300 flex items-center justify-center gap-2 ${
+                  isSubmitting
+                    ? "bg-cyan-950/20 text-cyan-400/50 border border-cyan-500/20 cursor-not-allowed"
+                    : "bg-cyan-400 hover:bg-cyan-300 text-black shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:shadow-[0_0_30px_rgba(6,182,212,0.5)] cursor-pointer"
+                }`}
               >
-                Submit Request <Send className="w-4 h-4 ml-1" />
+                {isSubmitting ? "Sending..." : "Submit Request"}
+                {!isSubmitting && <Send className="w-4 h-4 ml-1" />}
               </button>
             </form>
           </motion.div>
