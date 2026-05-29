@@ -1,5 +1,3 @@
-
-
 "use client"
 
 import { motion, useScroll, useTransform } from "framer-motion"
@@ -25,18 +23,11 @@ import { ContactSection } from "@/components/sections/ContactSection"
 import { LiteratureSection } from "@/components/sections/LiteratureSection"
 import { ParticlesBackground } from "@/components/ui/ParticlesBackground"
 
-// const STATS = [
-//   { value: "4", label: "Research Pillars" },
-//   { value: "6", label: "Non-IID Metrics" },
-//   { value: "ε-DP", label: "Privacy Budget" },
-//   { value: "FL+RL", label: "Core Paradigm" },
-// ]
-
 const STATS = [
-  { value: "MTFL", label: "Core Architecture" },       // Hansa's Component 1
-  { value: "EHR+Vision", label: "Multimodal Fusion" }, // Tharushika's Component 2
-  { value: "ε-DP", label: "Local Privacy" },           // Oshadhi's Component 3
-  { value: "XAI", label: "Clinical Transparency" },    // Mihili & Tharushika's Explainability
+  { value: "MTFL", label: "Core Architecture" },
+  { value: "EHR+Vision", label: "Multimodal Fusion" },
+  { value: "ε-DP", label: "Local Privacy" },
+  { value: "XAI", label: "Clinical Transparency" },
 ]
 
 const FloatingOrb = ({ className }: { className?: string }) => (
@@ -87,7 +78,7 @@ export default function Home() {
           >
             {/* Left Column: Title Data */}
             <div className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left pt-2">
-              
+
               {/* Tag */}
               <motion.div variants={itemVariants} className="inline-flex items-center gap-2 rounded-full border border-cyan-500/30 bg-cyan-500/5 px-4 py-1.5 text-xs font-bold tracking-widest text-cyan-400 uppercase mb-4">
                 <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
@@ -132,13 +123,13 @@ export default function Home() {
 
             {/* Right Column: 2x2 Stats Grid */}
             <div className="w-full lg:w-[45%] xl:w-[40%] flex-shrink-0">
-              <motion.div 
-                variants={itemVariants} 
+              <motion.div
+                variants={itemVariants}
                 className="grid grid-cols-2 gap-4 md:gap-6"
               >
                 {STATS.map((s, i) => (
                   <SpotlightCard
-                    key={i} 
+                    key={i}
                     spotlightColor="rgba(0, 212, 255, 0.2)"
                     className="rounded-[2rem] bg-black/40 backdrop-blur-md shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:border-cyan-500/50"
                   >
