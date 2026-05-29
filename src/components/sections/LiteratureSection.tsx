@@ -119,7 +119,7 @@ export function LiteratureSection() {
                   <Shield className="w-5 h-5 text-red-400" />
                 </div>
                 <span className="inline-flex text-[12px] font-bold uppercase tracking-[0.1em] px-2.5 py-1 rounded-full bg-red-500/[0.08] border border-red-500/20 text-red-400 mb-4">
-                  02 · Gap
+                  01 · Gap
                 </span>
                 <h3 className="text-[22px] font-black text-white tracking-tight mb-3">Research Gap</h3>
                 <p className="text-[16px] text-white/60 leading-[1.7]">
@@ -149,7 +149,7 @@ export function LiteratureSection() {
                   <HelpCircle className="w-5 h-5 text-cyan-400" />
                 </div>
                 <span className="inline-flex text-[12px] font-bold uppercase tracking-[0.1em] px-2.5 py-1 rounded-full bg-cyan-400/[0.08] border border-cyan-400/20 text-cyan-400 mb-4">
-                  03 · Problem
+                  02 · Problem
                 </span>
                 <h3 className="text-[22px] font-black text-white tracking-tight mb-3">Research Problem</h3>
                 <p className="text-[16px] text-white/60 leading-[1.85] text-justify">
@@ -186,7 +186,7 @@ export function LiteratureSection() {
                   </div>
                   <div>
                     <h3 className="text-[22px] font-black text-white tracking-tight">Literature Survey</h3>
-                    <p className="text-[12px] text-white/50 font-bold uppercase tracking-widest mt-1">01 · Background</p>
+                    <p className="text-[12px] text-white/50 font-bold uppercase tracking-widest mt-1">03 · Background</p>
                   </div>
                 </div>
 
